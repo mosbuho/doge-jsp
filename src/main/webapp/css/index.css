@@ -1,0 +1,256 @@
+:root[theme="light"] {
+    --background: #fff;
+    --color: #000;
+    --table-background: #efefef;
+    --border-color: #efefef;
+}
+
+:root[theme="dark"] {
+    --background: #000;
+    --color: #fff;
+    --table-background: #727272;
+    --border-color: #727272;
+}
+
+body {
+    background-color: var(--background);
+    margin: 0;
+    padding: 0;
+    color: var(--color);
+}
+
+li#dogepedia .fa-caret-down {
+    font-size: 10px;
+}
+
+li#toggle {
+    cursor: pointer;
+    color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #ffc107;
+}
+
+header {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    background-color: black;
+}
+
+header nav {
+    padding: 15px 0 15px 0;
+    display: flex;
+    justify-content: space-between;
+    width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+header img {
+    height: 42px;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+header ul li {
+    margin: 0 10px;
+}
+
+header ul li i.fa-shirt,
+header ul li i.fa-circle-half-stroke,
+header ul li i.fa-square {
+    margin-left: 15px;
+}
+
+div[id$="InMenu"] {
+    flex-direction: column;
+    margin-top: 10px;
+    display: none;
+    position: absolute;
+    background-color: #0f0f0f;
+    padding: 10px 10px 10px 0;
+}
+
+li#dogepedia div a {
+    margin: 15px;
+}
+
+li#language a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+li#language a i.fa-caret-down:hover {
+    color: #ffc107;
+}
+
+div#languageInMenu a {
+    margin: 6px 0;
+}
+
+span.contry {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    background-color: rgb(33, 37, 41);
+}
+
+div.video-container {
+    position: relative;
+    height: 100vh;
+}
+
+div.video-container video {
+    width: 100%;
+    height: 100%;
+    object-position: 100% 100%;
+    object-fit: cover;
+}
+
+div.video-container div.content {
+    width: 30%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+div.video-container div.content div {
+    position: relative;
+}
+
+div.video-container div.content div.dogesay {
+    width: 35%;
+    right: -100px;
+    top: 50px;
+    position: absolute;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+div.video-container div.content div.dogesay a {
+    color: #000;
+    font-size: 1vw;
+    font-weight: bold;
+}
+
+div.dogesay-triangle {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-bottom: 20px solid white;
+    position: absolute !important;
+    left: -15px;
+    bottom: 10px;
+}
+
+div.video-container h1 {
+    margin: 0;
+    font-size: 4vw;
+    color: #fff;
+}
+
+div.video-container span {
+    font-size: 2vw;
+    color: #fff;
+}
+
+
+footer {
+    margin-top: 20px;
+    padding: 0 20px 20px 20px;
+    text-align: center;
+    font-size: 14px;
+    width: 1200px;
+    margin: 0 auto;
+    color: var(--color);
+}
+
+footer div.footer-first {
+    margin-top: 20px;
+    display: flex;
+    height: 245px;
+    justify-content: space-between;
+}
+
+footer div.footer-first div {
+    width: 200px;
+    text-align: left;
+}
+
+footer div.footer-first div a {
+    color: var(--color);
+}
+
+footer div.footer-first div a:hover {
+    color: #ffc107;
+}
+
+footer div.footer-first div:first-child {
+    width: 400px;
+}
+
+footer div.footer-first div:first-child div {
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+}
+
+footer div.footer-first div:first-child p {
+    font-size: 14px;
+    color: #999;
+    text-align: left;
+}
+
+footer div.footer-first ul {
+    list-style: none;
+    margin: 20px 0 0 0;
+    padding: 0;
+}
+
+footer div.footer-first ul li {
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+footer div.footer-first span.title {
+    font-size: 22px;
+}
+
+footer div.footer-first div:first-child img {
+    width: 42px;
+    height: 42px;
+    margin-right: 10px;
+}
+
+footer div.footer-last {
+    padding-top: 20px;
+    border-top: 1px solid #4e4e57;
+    color: #999;
+}
+
+footer div.footer-last a {
+    color: #999;
+}
+
+footer div.footer-last a:hover {
+    color: #ffc107;
+    text-decoration: none;
+}
