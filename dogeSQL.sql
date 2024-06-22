@@ -6,21 +6,21 @@
 
 -- grant connect, resource, dba to dogeuser;
 
-drop sequence member_pk_seq;
-drop sequence manager_pk_seq;
 drop sequence goods_pk_seq;
 drop sequence cart_pk_seq;
 drop sequence purchase_pk_seq;
 drop sequence question_pk_seq;
 drop sequence answer_pk_seq;
+drop sequence manager_pk_seq;
+drop sequence member_pk_seq;
 
-drop table member;
-drop table manager;
 drop table goods;
 drop table cart;
 drop table purchase;
 drop table question;
 drop table answer;
+drop table manager;
+drop table member;
 
 create sequence member_pk_seq start with 1 increment by 1 nocache nocycle;
 create sequence manager_pk_seq start with 1 increment by 1 nocache nocycle;
@@ -33,7 +33,7 @@ create sequence answer_pk_seq start with 1 increment by 1 nocache nocycle;
 create table member (
     member_id number default member_pk_seq.nextval constraint member_pk primary key,
     id varchar2(16) not null unique,
-    pw varchar2(32) not null,
+    pw varchar2(60) not null,
     phone number(11) not null,
     addr varchar2(50) not null,
     reg_date date default sysdate
@@ -42,7 +42,7 @@ create table member (
 create table manager (
     manager_id number default manager_pk_seq.nextval constraint manager_pk primary key,
     id varchar2(16) not null unique,
-    pw varchar2(32) not null,
+    pw varchar2(60) not null,
     reg_date date default sysdate
 );
 
@@ -88,3 +88,8 @@ create table answer (
     content varchar2(1000) not null,
     reg_date date default sysdate
 );
+
+insert into manager (id, pw) values ('admin', 'admin');
+commit;
+
+select * from manager;
