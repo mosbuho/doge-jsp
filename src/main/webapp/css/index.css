@@ -68,9 +68,7 @@ header ul {
 header ul li {
     margin: 0 10px;
 }
-
 header ul li i.fa-shirt,
-header ul li i.fa-circle-half-stroke,
 header ul li i.fa-square {
     margin-left: 15px;
 }

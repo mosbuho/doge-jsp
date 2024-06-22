@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://kit.fontawesome.com/5d961484b0.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/shop_jsp/css/index.css">
-    <script src="/shop_jsp/js/index.js"></script>
+    <link rel="stylesheet" href="/DogeJSP/css/index.css">
+    <script src="/DogeJSP/js/index.js"></script>
 </head>
 
 <body>
@@ -45,6 +45,11 @@
                 <li>
                     <a href="#">
                         <i class="fa-solid fa-shirt"></i>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                    	<i class="fa-solid fa-user"></i>
                     </a>
                 </li>
                 <li id="toggle">
