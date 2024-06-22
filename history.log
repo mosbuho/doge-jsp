@@ -1,0 +1,12 @@
+d72a720e-5974-41e5-8834-56e9d880a181:1719049419068:0:F:create sequence m_pk_seq start with 1 increment by 1 nocache nocycle;
+be6e6a56-5f18-476a-b3c2-7b7388640ec6:1719049419276:0:F:create sequence g_pk_seq start with 1 increment by 1 nocache nocycle;
+95d45998-ebf5-4484-bd1e-33f00ba3c8ba:1719049419448:0:F:create sequence q_pk_seq start with 1 increment by 1 nocache nocycle;
+c5e770e1-a8e2-4210-b344-818f4d6af05b:1719049419534:14:S:drop table member;
+1b6b313e-e19c-4316-8783-2d85e8a77e87:1719049419588:14:S:drop table goods;
+3d91f501-c8e2-406b-8a42-beef46fa2d09:1719049419643:0:F:drop table qna;
+6508a1bd-a009-4ae8-b93a-7915442e545c:1719049419697:0:F:drop table member;
+633dbb2f-cf25-45eb-8c22-7407a2a33af3:1719049420699:18:S:create table member (\n    m_id number default m_pk_seq.nextval constraint m_pk primary key,\n    id varchar2(16) not null unique,\n    pw varchar2(32) not null,\n    phone number(11) not null,\n    addr varchar2(50) not null,\n    is_admin number(1) default 0,\n    reg_date date default sysdate\n);
+e5f06da0-38b6-4f45-89ac-fdfa0102fc5e:1719049421576:16:S:create table goods (\n    g_id number default g_pk_seq.nextval constraint g_pk primary key,\n    title varchar2(40) not null,\n    content varchar2(1000) not null,\n    img varchar2(60) not null,\n    discount number(3) default 0 check (discount <= 100),\n    reg_date date default sysdate\n);
+489d6dcf-5e46-43e1-9afc-0859976b697c:1719049422181:0:F:create table qna (\n    q_id number default b_pk_seq.nextval constraint b_pk primary key,\n    title varchar2(40) not null,\n    content varchar2(1000) not null,\n    author constraint b_m_fk references member (m_pk),\n    reg_date date default sysdate\n);
+18a81946-6484-4017-8cb4-5ea7f12d4aa9:1719049422599:0:F:create table comment(\n    c_id number default c_pk_seq.nextval constraint c_pk primary key,\n    q_id references qna (q_id)\n);
+3ade0126-cd7e-4937-976c-df93cbfb2220:1719050150332:0:F:exit()
