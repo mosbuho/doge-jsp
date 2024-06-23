@@ -7,6 +7,8 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 public class DBUtil {
+
+	/** DB 연결 */
 	public static Connection getConnection() {
 		Connection conn = null;
 		Context init;
