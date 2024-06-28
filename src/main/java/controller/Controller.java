@@ -94,6 +94,7 @@ public class Controller extends HttpServlet {
 		if (command.indexOf(request.getContextPath()) == 0) {
 			command = command.substring(request.getContextPath().length());
 		}
+
 		com = (CommandAction) commandMap.get(command);
 
 		try {
@@ -101,9 +102,11 @@ public class Controller extends HttpServlet {
 		} catch (Throwable e) {
 			System.err.println("예기치 못한 오류 발생: " + e.getMessage());
 		}
-		
-		request.setAttribute("cont", view);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
-		dispatcher.forward(request, response);
+
+		if (view != null) {
+			request.setAttribute("cont", view);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 }
