@@ -9,7 +9,7 @@
 <script src="https://kit.fontawesome.com/5d961484b0.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/doge-jsp/css/index.css">
-<script src="/doge-jsp/index.js"></script>
+<script src="/doge-jsp/js/index.js"></script>
 </head>
 
 <body>
