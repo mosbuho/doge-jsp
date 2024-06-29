@@ -34,7 +34,7 @@ create table member (
     member_id number default member_pk_seq.nextval constraint member_pk primary key,
     id varchar2(16) not null unique,
     pw varchar2(60) not null,
-    phone number(11) not null,
+    phone varchar2(11) not null,
     addr varchar2(50) not null,
     reg_date date default sysdate
 );
@@ -93,3 +93,4 @@ insert into manager (id, pw) values ('admin', 'admin');
 commit;
 
 select * from manager;
+select * from member;

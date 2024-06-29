@@ -1,54 +1,63 @@
 package bean;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import dbcon.DBUtil;
-import work.crypt.BCrypt;
-import work.crypt.SHA256;
+import java.util.Date;
 
 public class MemberBean {
-	private static MemberBean instance = new MemberBean();
+	private String id;
+	private String pw;
+	private String phone;
+	private String addr;
+	private Date reg_Date;
 
-	public static MemberBean getInstance() {
-		return instance;
+	public MemberBean(String id, String pw, String phone, String addr) {
+		this.id = id;
+		this.pw = pw;
+		this.phone = phone;
+		this.addr = addr;
 	}
 
-	private MemberBean() {
+	public String getId() {
+		return id;
 	}
 
-	public boolean login(String id, String pw) {
-		boolean result = false;
+	public void setId(String id) {
+		this.id = id;
+	}
 
-		SHA256 sha = SHA256.getInstance();
-		String shaPw = null;
-		try {
-			String orgPw = pw;
-			shaPw = sha.getSha256(orgPw.getBytes());
-		} catch (Exception e) {
-			e.printStackTrace();
-			return result;
-		}
+	public String getPw() {
+		return pw;
+	}
 
-		try (Connection conn = DBUtil.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement("select pw from member where id = ?")) {
-			pstmt.setString(1, id);
-			try (ResultSet rs = pstmt.executeQuery()) {
-				if (rs.next()) {
-					String dbPw = rs.getString("pw");
-					if (pw.equals(dbPw)) {
-						result = true;
-					}
-//					if (BCrypt.checkpw(shaPw, dbPw)) {
-//						result = true;
-//					}
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return result;
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+
+	public Date getReg_Date() {
+		return reg_Date;
+	}
+
+	public void setReg_Date(Date reg_Date) {
+		this.reg_Date = reg_Date;
+	}
+
+	@Override
+	public String toString() {
+		return "id=" + id + ", pw=" + pw + ", phone=" + phone + ", addr=" + addr + ", reg_Date=" + reg_Date;
 	}
 }

@@ -6,11 +6,11 @@
 	<h2>로그인</h2>
 	<form id="loginForm">
 		<div class="input-group">
-			<label for="loginId">사용자 이름</label> <input type="text" id="loginId"
+			<label for="id">사용자 이름</label> <input type="text" id="id"
 				name="id" required>
 		</div>
 		<div class="input-group">
-			<label for="loginPw">비밀번호</label> <input type="password" id="loginPw"
+			<label for="pw">비밀번호</label> <input type="password" id="pw"
 				name="pw" required>
 		</div>
 		<button type="button" onclick="submitLoginForm()">로그인</button>

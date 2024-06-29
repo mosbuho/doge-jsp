@@ -22,7 +22,7 @@
 				name="phone" placeholder="-를 제외한 숫자만 입력" required>
 		</div>
 		<div class="input-group">
-			<label for="addr">주소</label> <input type="text" id="address"
+			<label for="addr">주소</label> <input type="text" id="addr"
 				name="addr" required>
 		</div>
 		<button type="button" onclick="submitRegisterForm()">회원가입</button>
