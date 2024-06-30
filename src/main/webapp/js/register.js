@@ -5,11 +5,12 @@ async function submitRegisterForm() {
 	const phone = document.getElementById('phone').value;
 	const addr = document.getElementById('addr').value;
 
+	const idRegex = /^[a-zA-Z0-9]+$/;
 	const phoneRegex = /^\d{11}$/;
 	const pwRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
 
-	if (id.length < 4 || id.length > 16) {
-		alert('아이디는 4자 이상 16자 이하여야 합니다.');
+	if (id.length < 4 || id.length > 16 || !idRegex.test(id)) {
+		alert('아이디는 영문, 숫자로 이루어진 4자 이상 16자 이하여야 합니다.');
 		return;
 	} else if (!pwRegex.test(pw)) {
 		alert('비밀번호는 영어, 특수문자, 숫자를 포함하여 8자 이상 16자 이하여야 합니다.');
@@ -35,7 +36,7 @@ async function submitRegisterForm() {
 			alert("회원가입 성공");
 			location.href = "/doge-jsp/index.do";
 		} else {
-			alert("회원가입에 실패했습니다. 입력값을 확인해주세요.");			
+			alert("아이디가 중복됩니다. 다른 아이디를 사용해주세요.");
 		}
 	}
 }

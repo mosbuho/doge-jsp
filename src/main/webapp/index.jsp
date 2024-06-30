@@ -37,9 +37,14 @@
 						<a href="/doge-jsp/loginForm.do"> <i class="fa-solid fa-user"></i>
 						</a>
 					</c:if> <c:if test="${!empty sessionScope.id}">
-						<a href="/doge-jsp/profile.do"> <i class="fa-solid fa-user"></i>
+						<a href="/doge-jsp/logoutProcess.do"> <i
+							class="fa-solid fa-user"></i>
 						</a>
 					</c:if></li>
+				<c:if test="${!empty sessionScope.admin }">
+					<li><a href="#"> <i class="fa-solid fa-toolbox"></i>
+					</a></li>
+				</c:if>
 				<li id="toggle"><i class="fa-solid fa-circle-half-stroke"></i>
 				</li>
 				<li id="language" onmouseover="displayInMenu(this.id)"><a
