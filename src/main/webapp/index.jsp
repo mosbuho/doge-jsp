@@ -31,7 +31,8 @@
 						<a href="#">Document</a> <a href="#">FAQ</a> <a href="#">How
 							Tos</a> <a href="#">Resources</a>
 					</div></li>
-				<li><a href="#"> <i class="fa-solid fa-shirt"></i>
+				<li><a href="/doge-jsp/goodsMain.do"> <i
+						class="fa-solid fa-shirt"></i>
 				</a></li>
 				<li><c:if test="${empty sessionScope.id}">
 						<a href="/doge-jsp/loginForm.do"> <i class="fa-solid fa-user"></i>

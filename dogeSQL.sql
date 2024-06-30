@@ -50,9 +50,11 @@ create table goods (
     goods_id number default goods_pk_seq.nextval constraint goods_pk primary key,
     title varchar2(40) not null,
     description varchar2(1000) not null,
-    title_img varchar2(50) not null,
+    title_img varchar2(50) default 'default.png',
+    price number(6) check (price >= 0) not null,
     discount number(3) check (discount between 0 and 100) not null,
     quantity number(4) check (quantity >= 0) not null,
+    category varchar2(20) not null,
     reg_date date default sysdate
 );
 
@@ -90,7 +92,19 @@ create table answer (
 );
 
 insert into manager (id, pw) values ('admin', 'admin');
+
+insert into goods(title, description, title_img, price, discount, quantity, category) values ('test','test', 'test.png', 10001, 0,100, 'other');
+insert into goods(title, description, price, discount, quantity, category) values ('test1','test1', 10002, 0,100, 'other');
+insert into goods(title, description, price, discount, quantity, category) values ('test2','test2', 10003, 0,100, 'other');
+insert into goods(title, description, price, discount, quantity, category) values ('test3','test3', 10004, 0,100, 'other');
+insert into goods(title, description, price, discount, quantity, category) values ('test4','test4', 10005, 0,100, 'other');
+insert into goods(title, description, price, discount, quantity, category) values ('test5','test5', 10006, 0,100, 'other');
+insert into goods(title, description, price, discount, quantity, category) values ('test6','test6', 10007, 0,100, 'other');
+insert into goods(title, description, price, discount, quantity, category) values ('test7','test7', 10008, 0,100, 'other');
+
 commit;
+
 
 select * from manager;
 select * from member;
+select * from goods;
