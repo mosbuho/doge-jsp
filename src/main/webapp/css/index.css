@@ -30,12 +30,16 @@ li#toggle {
 
 a {
 	text-decoration: none;
-	color: #fff;
+	color: var(--color);
 }
 
 a:hover {
 	text-decoration: underline;
 	color: #ffc107;
+}
+
+header a {
+	color: #fff;
 }
 
 header {

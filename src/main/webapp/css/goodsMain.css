@@ -4,30 +4,31 @@ main {
 	justify-content: center;
 }
 
-div.product-container {
+div.goods-container {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
 
-div.product-item {
+div.goods-item {
 	width: 20%;
+	height: 240px;
 	border: 1px solid #ddd;
 	margin-bottom: 20px;
-	padding: 10px;
+	padding: 70px 20px 0px 20px;
 	text-align: center;
 }
 
-div.product-item img {
+div.goods-item img {
 	width: 100px;
 	height: 100px;
 }
 
-div.product-name {
+div.goods-name {
 	font-weight: bold;
 	margin: 10px 0;
 }
 
-div.product-price {
+div.goods-price {
 	color: #f00;
 }
