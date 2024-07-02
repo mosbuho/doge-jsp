@@ -28,13 +28,13 @@ public class LoginProcessAction implements CommandAction {
 		String pw = jsonRequest.getString("pw");
 
 		MemberDAO member = MemberDAO.getInstance();
-		boolean check = member.login(id, pw);
+		int member_id = member.login(id, pw);
 
 		JSONObject jsonResponse = new JSONObject();
-		jsonResponse.put("check", check);
+		jsonResponse.put("member_id", member_id);
 
-		if (check) {
-			request.getSession().setAttribute("id", id);
+		if (member_id != 0) {
+			request.getSession().setAttribute("member_id", member_id);
 		}
 
 		response.setContentType("application/json");

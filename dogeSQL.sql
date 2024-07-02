@@ -6,21 +6,21 @@
 
 -- grant connect, resource, dba to dogeuser;
 
+drop sequence manager_pk_seq;
+drop sequence member_pk_seq;
 drop sequence goods_pk_seq;
 drop sequence cart_pk_seq;
 drop sequence purchase_pk_seq;
 drop sequence question_pk_seq;
 drop sequence answer_pk_seq;
-drop sequence manager_pk_seq;
-drop sequence member_pk_seq;
 
+drop table manager;
+drop table member;
 drop table goods;
 drop table cart;
 drop table purchase;
 drop table question;
 drop table answer;
-drop table manager;
-drop table member;
 
 create sequence member_pk_seq start with 1 increment by 1 nocache nocycle;
 create sequence manager_pk_seq start with 1 increment by 1 nocache nocycle;
@@ -63,7 +63,6 @@ create table cart (
     member_id references member (member_id),
     goods_id references goods (goods_id),
     quantity number(4) not null,
-    total number default 0 not null,
     reg_date date default sysdate
 );
 
@@ -91,6 +90,22 @@ create table answer (
     reg_date date default sysdate
 );
 
+create or replace procedure update_cart (
+    p_member_id in number,
+    p_goods_id in number,
+    p_quantity in number
+) as 
+    l_count number;
+begin
+    select count(*) into l_count from cart where member_id = p_member_id and goods_id = p_goods_id;
+    if l_count > 0
+        then update cart set quantity = quantity + p_quantity where member_id = p_member_id and goods_id = p_goods_id;
+    else
+        insert into cart (member_id, goods_id, quantity) values (p_member_id, p_goods_id, p_quantity);
+    end if;
+end;
+/
+
 insert into manager (id, pw) values ('admin', 'admin');
 
 insert into goods(title, description, title_img, price, discount, quantity, category) values ('test','test', 'test.png', 10001, 0,100, 'other');
@@ -104,7 +119,9 @@ insert into goods(title, description, price, discount, quantity, category) value
 
 commit;
 
+delete from cart;
 
+select * from cart;
 select * from manager;
 select * from member;
 select * from goods;

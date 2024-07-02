@@ -34,10 +34,10 @@
 				<li><a href="/doge-jsp/goodsMain.do"> <i
 						class="fa-solid fa-shirt"></i>
 				</a></li>
-				<li><c:if test="${empty sessionScope.id}">
+				<li><c:if test="${empty sessionScope.member_id}">
 						<a href="/doge-jsp/loginForm.do"> <i class="fa-solid fa-user"></i>
 						</a>
-					</c:if> <c:if test="${!empty sessionScope.id}">
+					</c:if> <c:if test="${!empty sessionScope.member_id}">
 						<a href="/doge-jsp/logoutProcess.do"> <i
 							class="fa-solid fa-user"></i>
 						</a>

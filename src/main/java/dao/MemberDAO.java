@@ -20,8 +20,8 @@ public class MemberDAO {
 	private MemberDAO() {
 	}
 
-	public boolean login(String id, String pw) {
-		boolean result = false;
+	public int login(String id, String pw) {
+		int result = 0;
 
 		SHA256 sha = SHA256.getInstance();
 		String shaPw = null;
@@ -34,13 +34,13 @@ public class MemberDAO {
 		}
 
 		try (Connection conn = DBUtil.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement("select pw from member where id = ?")) {
+				PreparedStatement pstmt = conn.prepareStatement("select member_id, pw from member where id = ?")) {
 			pstmt.setString(1, id);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
 					String dbPw = rs.getString("pw");
 					if (BCrypt.checkpw(shaPw, dbPw)) {
-						result = true;
+						result = rs.getInt("member_id");
 					}
 				}
 			}
