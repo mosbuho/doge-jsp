@@ -19,9 +19,7 @@ function incrementQuantity() {
 }
 
 function addToCart(member_id, goods_id) {
-	let display = document.getElementById('display-quantity');
-	let quantity = parseInt(display.textContent);
-
+	let quantity = parseInt(document.getElementById('display-quantity').textContent);
 	if (member_id !== 0) {
 		fetch("/doge-jsp/addToCart.do", {
 			method: "POST",
@@ -34,6 +32,25 @@ function addToCart(member_id, goods_id) {
 	}
 }
 
-function buyNow() {
-	alert("구매하기");
+function purchase(member_id) {
+	if (member_id !== 0) {
+		let quantity = parseInt(document.getElementById('display-quantity').textContent);
+		document.getElementById('quantity').value = quantity;
+
+		let form = document.createElement('form');
+		form.method = 'POST';
+		form.action = '/doge-jsp/purchaseForm.do';
+
+		let inputIds = ['member_id', 'goods_id', 'quantity'];
+		inputIds.forEach(id => {
+			let input = document.getElementById(id);
+			input.name = id;
+			form.appendChild(input.cloneNode());
+		});
+
+		document.body.appendChild(form);
+		form.submit();
+	} else {
+		alert("로그인 후 가능합니다.");
+	}
 }

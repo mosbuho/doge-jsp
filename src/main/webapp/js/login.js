@@ -9,12 +9,10 @@ async function submitLoginForm() {
 	});
 
 	const result = await response.json();
-
 	if (result.member_id !== 0) {
 		alert("로그인 성공");
 		location.href = "/doge-jsp/index.do";
 	} else {
-		console.log(result.member_id);
 		alert("아이디 또는 비밀번호가 올바르지 않습니다.");
 	}
 }

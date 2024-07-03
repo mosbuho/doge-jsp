@@ -35,7 +35,7 @@ main {
 
 .goods-detail-container {
 	display: flex;
-	padding: 20px 0 60px 0;
+	padding: 20px 0 35px 0;
 	gap: 20px;
 }
 
@@ -86,7 +86,6 @@ button.buy-now {
 
 .goods-description {
 	padding: 20px;
-	border-top: 1px solid #ddd;
 }
 
 .goods-description h2 {

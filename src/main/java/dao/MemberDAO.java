@@ -55,19 +55,37 @@ public class MemberDAO {
 
 		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement pstmt = conn
-						.prepareStatement("insert into member(id,pw,phone,addr) values(?, ?, ?, ?)")) {
+						.prepareStatement("insert into member(id, pw, name, phone, addr) values(?, ?, ?, ?, ?)")) {
 			String shaPw = sha.getSha256(member.getPw().getBytes());
 			String bcPw = BCrypt.hashpw(shaPw, BCrypt.gensalt());
 
 			pstmt.setString(1, member.getId());
 			pstmt.setString(2, bcPw);
-			pstmt.setString(3, member.getPhone());
-			pstmt.setString(4, member.getAddr());
+			pstmt.setString(3, member.getName());
+			pstmt.setString(4, member.getPhone());
+			pstmt.setString(5, member.getAddr());
 			int result = pstmt.executeUpdate();
 			return result > 0;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	public MemberBean getMember(int member_id) {
+		MemberBean member = null;
+		try (Connection conn = DBUtil.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement("select * from member where member_id = ?")) {
+			pstmt.setInt(1, member_id);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					member = new MemberBean(rs.getInt("member_id"), rs.getString("id"), rs.getString("pw"),
+							rs.getString("name"), rs.getString("phone"), rs.getString("addr"), rs.getDate("reg_date"));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return member;
 	}
 }

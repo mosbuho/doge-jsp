@@ -14,7 +14,6 @@ public class GoodsBean {
 
 	public GoodsBean(int goods_id, String title, String description, String title_img, int price, int discount,
 			int quantity, Date reg_date) {
-		super();
 		this.goods_id = goods_id;
 		this.title = title;
 		this.price = price;

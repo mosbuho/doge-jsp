@@ -24,12 +24,14 @@ public class RegisterProcessAction implements CommandAction {
 				sb.append(line);
 			}
 		}
+		
 		JSONObject jsonRequest = new JSONObject(sb.toString());
 		String id = jsonRequest.getString("id");
 		String pw = jsonRequest.getString("pw");
+		String name = jsonRequest.getString("name");
 		String phone = jsonRequest.getString("phone");
 		String addr = jsonRequest.getString("addr");
-		MemberBean member = new MemberBean(id, pw, phone, addr);
+		MemberBean member = new MemberBean(id, pw, name, phone, addr);
 
 		MemberDAO mdao = MemberDAO.getInstance();
 		boolean check = mdao.register(member);

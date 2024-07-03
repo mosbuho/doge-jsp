@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Form with Payment</title>
+</head>
+
+<div class="purchase-form">
+    <h2>구매 및 결제 정보 입력</h2>
+    <label for="member_id">회원 ID:</label>
+    <input type="text" id="member_id" name="member_id" required><br>
+
+    <label for="goods_id">상품 ID:</label>
+    <input type="text" id="goods_id" name="goods_id" required><br>
+
+    <label for="quantity">수량:</label>
+    <input type="number" id="quantity" name="quantity" required><br>
+
+    <label for="name">카드 소유자 이름:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="card_number">카드 번호:</label>
+    <input type="text" id="card_number" name="card_number" required><br>
+
+    <label for="expiry_date">유효 기간 (MM/YY):</label>
+    <input type="text" id="expiry_date" name="expiry_date" required><br>
+
+    <label for="cvv">CVV:</label>
+    <input type="text" id="cvv" name="cvv" required><br>
+
+    <button onclick="submitPurchase()">구매 및 결제 완료</button>
+</div>
+
+</html>
