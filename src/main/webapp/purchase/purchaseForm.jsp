@@ -19,8 +19,8 @@
 				<label for="quantity">수량 : </label> <span>${quantity}</span>
 			</div>
 			<div class="total-price">
-				<label for="total_price">총 금액 :</label> <span>${goods.price * quantity}
-					원</span>
+				<label for="total_price"></label> <span>${dogePrice * quantity}
+					DOGE &nbsp;-&nbsp; \$ ${goods.price * quantity}</span>
 			</div>
 		</div>
 	</div>

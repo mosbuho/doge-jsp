@@ -110,14 +110,14 @@ end;
 
 insert into manager (id, pw) values ('admin', 'admin');
 
-insert into goods(title, description, title_img, price, discount, quantity, category) values ('test','test', 'test.png', 10001, 0,100, 'other');
-insert into goods(title, description, price, discount, quantity, category) values ('test1','test1', 10002, 0,100, 'other');
-insert into goods(title, description, price, discount, quantity, category) values ('test2','test2', 10003, 0,100, 'other');
-insert into goods(title, description, price, discount, quantity, category) values ('test3','test3', 10004, 0,100, 'other');
-insert into goods(title, description, price, discount, quantity, category) values ('test4','test4', 10005, 0,100, 'other');
-insert into goods(title, description, price, discount, quantity, category) values ('test5','test5', 10006, 0,100, 'other');
-insert into goods(title, description, price, discount, quantity, category) values ('test6','test6', 10007, 0,100, 'other');
-insert into goods(title, description, price, discount, quantity, category) values ('test7','test7', 10008, 0,100, 'other');
+insert into goods(title, description, title_img, price, discount, quantity, category) values ('test','test', 'test.png', 27, 0,100, 'other');
+insert into goods(title, description, price, discount, quantity, category) values ('test1','test1', 16, 0,100, 'other');
+insert into goods(title, description, price, discount, quantity, category) values ('test2','test2', 18, 0,100, 'other');
+insert into goods(title, description, price, discount, quantity, category) values ('test3','test3', 23, 0,100, 'other');
+insert into goods(title, description, price, discount, quantity, category) values ('test4','test4', 21, 0,100, 'other');
+insert into goods(title, description, price, discount, quantity, category) values ('test5','test5', 22, 0,100, 'other');
+insert into goods(title, description, price, discount, quantity, category) values ('test6','test6', 27, 0,100, 'other');
+insert into goods(title, description, price, discount, quantity, category) values ('test7','test7', 16, 0,100, 'other');
 
 commit;
 
@@ -125,3 +125,8 @@ select * from cart;
 select * from manager;
 select * from member;
 select * from goods;
+
+delete from goods;
+delete from cart;
+
+delete from goods;

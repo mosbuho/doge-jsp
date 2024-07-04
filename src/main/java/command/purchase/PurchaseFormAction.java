@@ -3,6 +3,7 @@ package command.purchase;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import api.DogePrice;
 import bean.GoodsBean;
 import bean.MemberBean;
 import dao.GoodsDAO;
@@ -25,9 +26,14 @@ public class PurchaseFormAction implements CommandAction {
 		GoodsDAO gdao = GoodsDAO.getInstance();
 		GoodsBean goods = gdao.getGoods(goods_id);
 
+		DogePrice dp = DogePrice.getInstance();
+		double tmpPrice = dp.getDogePrice();
+		int dogePrice = (int) Math.round(goods.getPrice() * tmpPrice);
+
 		request.setAttribute("member", member);
 		request.setAttribute("goods", goods);
 		request.setAttribute("quantity", quantity);
+		request.setAttribute("dogePrice", dogePrice);
 
 		return "/purchase/purchaseForm.jsp";
 	}

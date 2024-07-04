@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import api.DogePrice;
 import bean.GoodsBean;
 import dao.GoodsDAO;
 import process.CommandAction;
@@ -17,6 +18,11 @@ public class GoodsMainAction implements CommandAction {
 		String category = request.getParameter("category");
 		ArrayList<GoodsBean> goodsList = gdao.getGoodsList(category);
 		request.setAttribute("goodsList", goodsList);
+
+		DogePrice dp = DogePrice.getInstance();
+		double tmpPrice = dp.getDogePrice();
+		request.setAttribute("tmpPrice", tmpPrice);
+
 		return "/goods/goodsMain.jsp";
 	}
 }

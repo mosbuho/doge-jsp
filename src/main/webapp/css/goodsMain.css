@@ -5,22 +5,24 @@ main {
 }
 
 div.goods-container {
+	width: 1250px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	display: flex;
 }
 
 div.goods-item {
 	width: 25%;
 	height: 240px;
 	margin-bottom: 20px;
-	padding: 70px 0 0 0;
+	padding: 20px 0 70px 0;
 	text-align: center;
 }
 
 div.goods-item img {
-	width: 200px;
-	height: 200px;
+	width: 250px;
+	height: 250px;
 }
 
 div.goods-name {
