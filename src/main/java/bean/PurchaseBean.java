@@ -7,6 +7,7 @@ public class PurchaseBean {
 	private int member_id;
 	private int goods_id;
 	private int quantity;
+	private String addr;
 	private int delivery_state;
 	private int transaction_id;
 	private Date reg_date;
@@ -43,6 +44,14 @@ public class PurchaseBean {
 		this.quantity = quantity;
 	}
 
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+
 	public int getDelivery_state() {
 		return delivery_state;
 	}
@@ -66,5 +75,4 @@ public class PurchaseBean {
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
-
 }

@@ -17,7 +17,7 @@ public class LoginProcessAction implements CommandAction {
 
 		StringBuilder sb = new StringBuilder();
 		try (BufferedReader reader = request.getReader()) {
-			String line;
+			String line = null;
 			while ((line = reader.readLine()) != null) {
 				sb.append(line);
 			}

@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-async function submitRegisterForm() {
+function submitRegisterForm() {
 	const id = document.getElementById('id').value;
 	const pw = document.getElementById('pw').value;
 	const pwCheck = document.getElementById('pwCheck').value;
@@ -25,7 +25,6 @@ async function submitRegisterForm() {
 
 	const idRegex = /^[a-zA-Z0-9]+$/;
 	const pwRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
-	const nameInput = document.getElementById('name');
 	const nameRegex = /^[a-zA-Z가-힣]{2,24}$/;
 
 	if (id.length < 4 || id.length > 16 || !idRegex.test(id)) {
@@ -37,24 +36,25 @@ async function submitRegisterForm() {
 	} else if (pw !== pwCheck) {
 		alert('비밀번호가 일치하지 않습니다.');
 		return;
-	} else if (!nameRegex.test(nameInput.value)) {
-		alert("이름은 2자 이상의 한글 혹은 영문이어야 합니다.")
+	} else if (!nameRegex.test(name)) {
+		alert("이름은 2자 이상의 한글 혹은 영문이어야 합니다.");
+		return;
 	} else {
 		const formData = { id: id, pw: pw, name: name, phone: phone, addr: addr };
 
-		const response = await fetch("/doge-jsp/registerProcess.do", {
+		fetch("/doge-jsp/registerProcess.do", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(formData)
-		});
-
-		const result = await response.json();
-
-		if (result.check) {
-			alert("회원가입 성공");
-			location.href = "/doge-jsp/index.do";
-		} else {
-			alert("아이디가 중복됩니다. 다른 아이디를 사용해주세요.");
-		}
+		})
+			.then(result => {
+				if (result.check) {
+					alert("회원가입 성공");
+					location.href = "/doge-jsp/index.do";
+				} else {
+					alert("아이디가 중복됩니다. 다른 아이디를 사용해주세요.");
+				}
+			})
+			.catch(alert("회원가입 요청 중 에러가 발생했습니다."))
 	}
 }

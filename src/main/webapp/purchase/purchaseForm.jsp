@@ -39,5 +39,7 @@
 			for="cvv">CVV</label> <input type="text" id="cvv" name="cvv" required><br>
 	</div>
 
-	<button onclick="submitPurchase()">결제 완료</button>
+	<button
+		onclick="submitPurchase(${member_id}, ${goods.goods_id}, ${quantity})">결제
+		완료</button>
 </div>

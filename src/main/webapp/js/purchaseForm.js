@@ -29,6 +29,30 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-function submitPurchase() {
-	alert("결제 완료");
+function submitPurchase(member_id, goods_id, quantity) {
+	const addr = document.getElementById('member_addr').value;
+
+	fetch("/doge-jsp/purchaseProcess.do", {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({ member_id: member_id, goods_id: goods_id, quantity: quantity, addr: addr })
+	})
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('네트워크 오류');
+			}
+			return response.json();
+		})
+		.then(data => {
+			if (data.check) {
+				alert("구매 완료");
+				location.href = "/doge-jsp/index.do";
+			} else {
+				alert("구매 처리 중 오류가 발생했습니다.");
+			}
+		})
+		.catch(error => {
+			console.error('Error:', error);
+			alert('구매 요청 중 오류가 발생했습니다.');
+		});
 }

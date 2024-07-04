@@ -35,7 +35,7 @@ create table member (
     id varchar2(16) not null unique,
     pw varchar2(60) not null,
     name varchar2(24) not null,
-    phone varchar2(11) not null,
+    phone varchar2(13) not null,
     addr varchar2(50) not null,
     reg_date date default sysdate
 );
@@ -72,6 +72,7 @@ create table purchase (
     member_id references member (member_id),
     goods_id references goods (goods_id),
     quantity number(4) not null,
+    addr varchar2(50) not null,
     delivery_state number(1) default 0,
     transaction_id varchar2(36) not null,
     reg_date date default sysdate
@@ -120,13 +121,15 @@ insert into goods(title, description, price, discount, quantity, category) value
 insert into goods(title, description, price, discount, quantity, category) values ('test7','test7', 16, 0,100, 'other');
 
 commit;
+rollback;
 
 select * from cart;
 select * from manager;
 select * from member;
 select * from goods;
+select * from purchase;
 
 delete from goods;
 delete from cart;
-
+delete from purchase;
 delete from goods;
