@@ -12,14 +12,13 @@ public class GoodsContentAction implements CommandAction {
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		GoodsDAO gdao = GoodsDAO.getInstance();
 		String id = request.getParameter("id");
+		GoodsDAO gdao = GoodsDAO.getInstance();
 		GoodsBean goods = gdao.getGoods(Integer.parseInt(id));
 		request.setAttribute("goods", goods);
 
 		DogePrice dp = DogePrice.getInstance();
-		double tmpPrice = dp.getDogePrice();
-		int dogePrice = (int) Math.round(goods.getPrice() * tmpPrice);
+		int dogePrice = (int) Math.round(goods.getPrice() * dp.getDogePrice());
 
 		request.setAttribute("dogePrice", dogePrice);
 		return "/goods/goodsContent.jsp";

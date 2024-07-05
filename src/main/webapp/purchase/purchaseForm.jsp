@@ -26,7 +26,7 @@
 	</div>
 
 	<div class="purchase-form-inputs">
-		<label for="member_name">배송 받는 분</label> <input type="text"
+		<label for="member_name">수령인</label> <input type="text"
 			id="member_name" name="member_name" required value="${member.name}"><br>
 		<label for="member_addr">배송지</label> <input type="text"
 			id="member_addr" name="member_addr" required value="${member.addr}"><br>

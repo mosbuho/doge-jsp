@@ -128,8 +128,3 @@ select * from manager;
 select * from member;
 select * from goods;
 select * from purchase;
-
-delete from goods;
-delete from cart;
-delete from purchase;
-delete from goods;

@@ -27,11 +27,15 @@ function addToCart(member_id, goods_id) {
 			body: JSON.stringify({ member_id, goods_id, quantity })
 		})
 			.then(response => {
-				alert("장바구니에 추가되었습니다.");
+				if (response.ok) {
+					alert("장바구니에 추가되었습니다.");
+				}
 			})
-			.catch(alert("장바구니 추가 중 문제가 발생했습니다. 다시 시도해주세요."));
+			.catch(() => {
+				alert("장바구니 추가 중 문제가 발생했습니다. 다시 시도해주세요.");
+			});
 	} else {
-		alert("로그인 후 가능합니다.")
+		alert("로그인 후 가능합니다.");
 	}
 }
 

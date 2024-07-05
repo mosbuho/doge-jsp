@@ -46,6 +46,10 @@
 					<li><a href="#"> <i class="fa-solid fa-toolbox"></i>
 					</a></li>
 				</c:if>
+				<c:if test="${!empty sessionScope.member_id }">
+					<li><a href="/doge-jsp/myCart.do"> <i class="fa-solid fa-cart-shopping"></i>
+					</a></li>
+				</c:if>
 				<li id="toggle"><i class="fa-solid fa-circle-half-stroke"></i>
 				</li>
 				<li id="language" onmouseover="displayInMenu(this.id)"><a

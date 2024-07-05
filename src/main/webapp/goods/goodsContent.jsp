@@ -13,7 +13,7 @@
 		</div>
 		<div class="goods-info">
 			<h1 class="goods-title">${goods.title}</h1>
-			<p class="goods-price">${dogePrice} DOGE &nbsp; - &nbsp; \$ ${goods.price}</p>
+			<p class="goods-price">${dogePrice} DOGE &nbsp; - &nbsp; \$${goods.price}.00</p>
 			<p id="goods-quantity" class="goods-quantity">${goods.quantity}개</p>
 			<p class="goods-reg_date">${goods.reg_date}출시</p>
 			<div class="user-quantity">

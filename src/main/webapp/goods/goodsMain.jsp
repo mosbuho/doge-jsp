@@ -13,7 +13,7 @@
 				<p class="goods-price">
 					<c:set var="dogePrice" value="${goods.price * tmpPrice}" />
 					<fmt:formatNumber value="${dogePrice}" maxFractionDigits="0" />
-					DOGE &nbsp; - &nbsp; \$ ${goods.price}
+					DOGE &nbsp; - &nbsp; \$${goods.price}.00
 				</p>
 			</a>
 		</div>
