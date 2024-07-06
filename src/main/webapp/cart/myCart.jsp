@@ -32,10 +32,10 @@
 <div class="purchase-form-inputs">
 	<label for="member_name">수령인</label> <input type="text" id="member_name" name="member_name" required value="${member.name}"><br> <label for="member_addr">배송지</label> <input type="text"
 		id="member_addr" name="member_addr" required value="${member.addr}"
-	><br> <label for="name">카드 소유자</label> <input type="text" id="name" name="name" value="${member.name}" required><br> <label for="card_number">카드 번호</label> <input type="text"
-		id="card_number" name="card_number" required
+	><br> <label for="card_name">카드 소유자</label> <input type="text" id="card_name" name="card_name" value="${member.name}" required><br> <label for="card_number">카드 번호</label> <input
+		type="text" id="card_number" name="card_number" required
 	><br> <label for="expiry_date">유효 기간 (MM/YY):</label> <input type="text" id="expiry_date" name="expiry_date" required><br> <label for="cvv">CVV</label> <input type="text" id="cvv"
 		name="cvv" required
 	><br>
 </div>
-<button class="checkout-button">구매하기</button>
+<button class="checkout-button" onclick="purchase(${member.member_id})">구매하기</button>

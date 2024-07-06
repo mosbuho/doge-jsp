@@ -17,7 +17,7 @@ public class PurchaseDAO {
 	private PurchaseDAO() {
 	}
 
-	public int purchase(int member_id, int goods_id, int quantity, String addr) {
+	public int purchase(int member_id, int goods_id, int quantity, String addr, String uuid) {
 		int result = 0;
 		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(
@@ -26,7 +26,7 @@ public class PurchaseDAO {
 			pstmt.setInt(2, goods_id);
 			pstmt.setInt(3, quantity);
 			pstmt.setString(4, addr);
-			pstmt.setString(5, UUID.randomUUID().toString());
+			pstmt.setString(5, uuid);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
