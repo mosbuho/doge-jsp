@@ -46,7 +46,6 @@ public class CartDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println(cartList);
 		return cartList;
 	}
 }

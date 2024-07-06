@@ -17,10 +17,11 @@ public class GoodsMainAction implements CommandAction {
 		GoodsDAO gdao = GoodsDAO.getInstance();
 		String category = request.getParameter("category");
 		ArrayList<GoodsBean> goodsList = gdao.getGoodsList(category);
-		request.setAttribute("goodsList", goodsList);
 
 		DogePrice dp = DogePrice.getInstance();
 		double tmpPrice = dp.getDogePrice();
+
+		request.setAttribute("goodsList", goodsList);
 		request.setAttribute("tmpPrice", tmpPrice);
 
 		return "/goods/goodsMain.jsp";
