@@ -11,16 +11,16 @@ drop sequence member_pk_seq;
 drop sequence goods_pk_seq;
 drop sequence cart_pk_seq;
 drop sequence purchase_pk_seq;
-drop sequence question_pk_seq;
 drop sequence answer_pk_seq;
+drop sequence question_pk_seq;
 
 drop table manager;
 drop table member;
 drop table goods;
 drop table cart;
 drop table purchase;
-drop table question;
 drop table answer;
+drop table question;
 
 create sequence member_pk_seq start with 1 increment by 1 nocache nocycle;
 create sequence manager_pk_seq start with 1 increment by 1 nocache nocycle;
@@ -80,9 +80,9 @@ create table purchase (
 
 create table question (
     question_id number default question_pk_seq.nextval constraint question_pk primary key,
-    title varchar2(40) not null,
+    member_id constraint question_member_fk references member (member_id),
+    goods_id constraint question_goods_fk references goods (goods_id),
     content varchar2(1000) not null,
-    author constraint question_member_fk references member (member_id),
     reg_date date default sysdate
 );
 

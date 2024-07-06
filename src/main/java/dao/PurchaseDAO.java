@@ -17,8 +17,7 @@ public class PurchaseDAO {
 	private PurchaseDAO() {
 	}
 
-	public int purchase(int member_id, int goods_id, int quantity, String addr, String uuid) {
-		int result = 0;
+	public void purchase(int member_id, int goods_id, int quantity, String addr, String uuid) {
 		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(
 						"insert into purchase (member_id, goods_id, quantity, addr, transaction_id) values (?, ?, ?, ?, ?)")) {
@@ -27,10 +26,9 @@ public class PurchaseDAO {
 			pstmt.setInt(3, quantity);
 			pstmt.setString(4, addr);
 			pstmt.setString(5, uuid);
-			result = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return result;
 	}
 }

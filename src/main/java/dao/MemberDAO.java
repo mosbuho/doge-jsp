@@ -21,7 +21,7 @@ public class MemberDAO {
 	}
 
 	public int login(String id, String pw) {
-		int result = 0;
+		int member_id = 0;
 
 		SHA256 sha = SHA256.getInstance();
 		String shaPw = null;
@@ -30,7 +30,7 @@ public class MemberDAO {
 			shaPw = sha.getSha256(orgPw.getBytes());
 		} catch (Exception e) {
 			e.printStackTrace();
-			return result;
+			return member_id;
 		}
 
 		try (Connection conn = DBUtil.getConnection();
@@ -40,17 +40,17 @@ public class MemberDAO {
 				if (rs.next()) {
 					String dbPw = rs.getString("pw");
 					if (BCrypt.checkpw(shaPw, dbPw)) {
-						result = rs.getInt("member_id");
+						member_id = rs.getInt("member_id");
 					}
 				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return result;
+		return member_id;
 	}
 
-	public boolean register(MemberBean member) {
+	public void register(MemberBean member) {
 		SHA256 sha = SHA256.getInstance();
 
 		try (Connection conn = DBUtil.getConnection();
@@ -64,11 +64,9 @@ public class MemberDAO {
 			pstmt.setString(3, member.getName());
 			pstmt.setString(4, member.getPhone());
 			pstmt.setString(5, member.getAddr());
-			int result = pstmt.executeUpdate();
-			return result > 0;
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
 		}
 	}
 

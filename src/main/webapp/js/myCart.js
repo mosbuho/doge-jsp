@@ -117,13 +117,7 @@ function purchase(member_id) {
 				body: JSON.stringify({ member_id: member_id, goodsList: goodsList, addr: member_addr })
 			})
 				.then(response => {
-					if (!response.ok) {
-						throw new Error("네트워크 오류가 발생했습니다.");
-					}
-					return response.json();
-				})
-				.then(data => {
-					if (data.check) {
+					if (response.ok) {
 						alert("구매가 완료되었습니다.");
 						location.href = "/doge-jsp/index.do";
 					} else {

@@ -49,15 +49,13 @@ public class CartDAO {
 		return cartList;
 	}
 
-	public int delCart(int member_id) {
-		int result = 0;
+	public void delCart(int member_id) {
 		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement("delete from cart where member_id = ?")) {
 			pstmt.setInt(1, member_id);
-			result = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return result;
 	}
 }

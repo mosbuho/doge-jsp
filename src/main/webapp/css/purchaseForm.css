@@ -2,6 +2,8 @@ main {
 	padding: 95px 0 75px 0;
 	display: flex;
 	justify-content: center;
+	width: 600px;
+	margin: 0 auto;
 }
 
 .purchase-form h2 {

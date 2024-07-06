@@ -1,5 +1,7 @@
 package command.member;
 
+import java.io.BufferedReader;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -7,7 +9,6 @@ import org.json.JSONObject;
 
 import dao.MemberDAO;
 import process.CommandAction;
-import java.io.BufferedReader;
 
 public class LoginProcessAction implements CommandAction {
 
@@ -30,16 +31,13 @@ public class LoginProcessAction implements CommandAction {
 		MemberDAO member = MemberDAO.getInstance();
 		int member_id = member.login(id, pw);
 
-		JSONObject jsonResponse = new JSONObject();
-		jsonResponse.put("member_id", member_id);
-
 		if (member_id != 0) {
 			request.getSession().setAttribute("member_id", member_id);
 		}
 
-		response.setContentType("application/json");
+		JSONObject jsonResponse = new JSONObject();
+		jsonResponse.put("member_id", member_id);
 		response.getWriter().write(jsonResponse.toString());
-
 		return null;
 	}
 }

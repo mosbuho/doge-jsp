@@ -1,4 +1,4 @@
-package command.manager;
+package command.question;
 
 import java.io.BufferedReader;
 
@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
-import dao.ManagerDAO;
+import dao.QuestionDAO;
 import process.CommandAction;
 
-public class ManagerLoginProcessAction implements CommandAction {
+public class NewQuestionAction implements CommandAction {
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -18,26 +18,19 @@ public class ManagerLoginProcessAction implements CommandAction {
 
 		StringBuilder sb = new StringBuilder();
 		try (BufferedReader reader = request.getReader()) {
-			String line;
+			String line = null;
 			while ((line = reader.readLine()) != null) {
 				sb.append(line);
 			}
 		}
 
 		JSONObject jsonRequest = new JSONObject(sb.toString());
-		String id = jsonRequest.getString("id");
-		String pw = jsonRequest.getString("pw");
+		int member_id = jsonRequest.getInt("member_id");
+		int goods_id = jsonRequest.getInt("goods_id");
+		String content = jsonRequest.getString("content");
+		QuestionDAO qdao = QuestionDAO.getInstance();
+		qdao.newQuestion(member_id, goods_id, content);
 
-		ManagerDAO manager = ManagerDAO.getInstance();
-		boolean check = manager.login(id, pw);
-
-		if (check) {
-			request.getSession().setAttribute("id", id);
-			request.getSession().setAttribute("admin", check);
-		}
-		JSONObject jsonResponse = new JSONObject();
-		jsonResponse.put("check", check);
-		response.getWriter().write(jsonResponse.toString());
 		return null;
 	}
 }

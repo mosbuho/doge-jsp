@@ -33,20 +33,10 @@ public class PurchaseProcessAction implements CommandAction {
 		String addr = jsonRequest.getString("addr");
 
 		PurchaseDAO pdao = PurchaseDAO.getInstance();
-		int pdaoRes = pdao.purchase(member_id, goods_id, quantity, addr, UUID.randomUUID().toString());
+		pdao.purchase(member_id, goods_id, quantity, addr, UUID.randomUUID().toString());
 
 		GoodsDAO gdao = GoodsDAO.getInstance();
-		int gdaoRes = gdao.purchaseGoods(goods_id, quantity);
-
-		JSONObject jsonResponse = new JSONObject();
-
-		if (pdaoRes == 0 || gdaoRes == 0) {
-			jsonResponse.put("check", false);
-		} else {
-			jsonResponse.put("check", true);
-		}
-		response.setContentType("application/json");
-		response.getWriter().write(jsonResponse.toString());
+		gdao.purchaseGoods(goods_id, quantity);
 
 		return null;
 	}

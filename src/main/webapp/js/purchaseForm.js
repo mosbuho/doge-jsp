@@ -47,18 +47,12 @@ function submitPurchase(member_id, goods_id, quantity) {
 			body: JSON.stringify({ member_id: member_id, goods_id: goods_id, quantity: quantity, addr: member_addr })
 		})
 			.then(response => {
-				if (!response.ok) {
-					throw new Error('네트워크 오류');
-				}
-				return response.json();
-			})
-			.then(data => {
-				if (data.check) {
+				if (response.ok) {
 					alert("구매 완료");
 					location.href = "/doge-jsp/index.do";
 				} else {
 					alert("구매 처리 중 오류가 발생했습니다.");
 				}
-			})
+			});
 	}
 }

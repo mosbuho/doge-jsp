@@ -37,28 +37,15 @@ public class PurchaseAllProcessAction implements CommandAction {
 		PurchaseDAO pdao = PurchaseDAO.getInstance();
 		GoodsDAO gdao = GoodsDAO.getInstance();
 
-		int pdaoRes = 0;
-		int gdaoRes = 0;
 		for (int i = 0; i < goodsList.length(); i++) {
 			JSONObject item = goodsList.getJSONObject(i);
 			int goods_id = item.getInt("goods_id");
 			int quantity = item.getInt("quantity");
-			pdaoRes = pdao.purchase(member_id, goods_id, quantity, addr, uuid);
-			gdaoRes = gdao.purchaseGoods(goods_id, quantity);
+			pdao.purchase(member_id, goods_id, quantity, addr, uuid);
+			gdao.purchaseGoods(goods_id, quantity);
 		}
-		int cdaoRes = 0;
 		CartDAO cdao = CartDAO.getInstance();
-		cdaoRes = cdao.delCart(member_id);
-
-		JSONObject jsonResponse = new JSONObject();
-		if (pdaoRes == 0 || gdaoRes == 0 || cdaoRes == 0) {
-			jsonResponse.put("check", false);
-		} else {
-			jsonResponse.put("check", true);
-		}
-
-		response.setContentType("application/json");
-		response.getWriter().write(jsonResponse.toString());
+		cdao.delCart(member_id);
 
 		return null;
 	}

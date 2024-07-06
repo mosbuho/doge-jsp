@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 	document.documentElement.setAttribute("theme", theme);
-	
+
 	document.getElementById('toggle').addEventListener("click", () => {
 		theme = localStorage.getItem("theme");
 		if (theme === 'dark') {

@@ -24,7 +24,7 @@ public class RegisterProcessAction implements CommandAction {
 				sb.append(line);
 			}
 		}
-		
+
 		JSONObject jsonRequest = new JSONObject(sb.toString());
 		String id = jsonRequest.getString("id");
 		String pw = jsonRequest.getString("pw");
@@ -34,13 +34,7 @@ public class RegisterProcessAction implements CommandAction {
 		MemberBean member = new MemberBean(id, pw, name, phone, addr);
 
 		MemberDAO mdao = MemberDAO.getInstance();
-		boolean check = mdao.register(member);
-
-		JSONObject jsonResponse = new JSONObject();
-		jsonResponse.put("check", check);
-
-		response.setContentType("application/json");
-		response.getWriter().write(jsonResponse.toString());
+		mdao.register(member);
 
 		return null;
 	}

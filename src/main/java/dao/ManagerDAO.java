@@ -37,8 +37,7 @@ public class ManagerDAO {
 			pstmt.setString(1, id);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
-					String dbPw = rs.getString("pw");
-					if (BCrypt.checkpw(shaPw, dbPw)) {
+					if (BCrypt.checkpw(shaPw, rs.getString("pw"))) {
 						result = true;
 					}
 				}

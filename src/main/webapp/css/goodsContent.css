@@ -42,13 +42,14 @@ main {
 
 .goods-image img {
 	max-width: 400px;
-	height: auto;
+	height: 330px;
 }
 
 .goods-info {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	margin-top: -20px;
 }
 
 .goods-title {
@@ -58,12 +59,12 @@ main {
 
 .goods-price, .goods-quantity, .goods-reg_date {
 	font-size: 20px;
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 }
 
 .goods-actions {
 	display: flex;
-	margin-top: 25px;
+	margin-top: 20px;
 	gap: 10px;
 }
 
@@ -85,10 +86,36 @@ button.buy-now {
 	color: #fff;
 }
 
-.goods-description {
+.goods-description, .goods-QnA, .goods-new-QnA {
 	padding: 20px;
 }
 
-.goods-description h2 {
+h2 {
 	margin-top: 0;
+}
+
+.goods-new-QnA {
+	display: flex;
+	justify-content: space-between;
+}
+
+.goods-new-QnA textarea {
+	height: 70px;
+	width: 90%;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	background: var(--input-background);
+	resize: none;
+	padding: 5px;
+}
+
+.goods-new-QnA button {
+	font-size: 14px;
+	width: 70px;
+	margin-left: 15px;
+	border-radius: 5px;
+	border: none;
+	background: var(--button-background);
+	color: var(--button-color);
 }

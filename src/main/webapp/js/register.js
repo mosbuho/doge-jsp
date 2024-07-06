@@ -47,14 +47,13 @@ function submitRegisterForm() {
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(formData)
 		})
-			.then(result => {
-				if (result.check) {
+			.then(response => {
+				if (response.ok) {
 					alert("회원가입 성공");
 					location.href = "/doge-jsp/index.do";
 				} else {
 					alert("아이디가 중복됩니다. 다른 아이디를 사용해주세요.");
 				}
-			})
-			.catch(alert("회원가입 요청 중 에러가 발생했습니다."))
+			});
 	}
 }
