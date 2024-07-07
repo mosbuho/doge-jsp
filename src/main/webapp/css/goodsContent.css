@@ -119,3 +119,14 @@ h2 {
 	background: var(--button-background);
 	color: var(--button-color);
 }
+
+.goods-qna p {
+	border-top: 1px solid var(--border-color);
+	border-bottom: 1px solid var(--border-color);
+	padding: 10px 0;
+	margin: 5px 0;
+}
+
+#QnANone {
+	border: none;
+}

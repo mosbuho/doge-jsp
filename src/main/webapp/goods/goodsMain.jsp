@@ -7,7 +7,7 @@
 <div class="goods-container">
 	<c:forEach var="goods" items="${goodsList}">
 		<div class="goods-item">
-			<a href="/doge-jsp/goodsContent.do?id=${goods.goods_id}"> <img
+			<a href="/doge-jsp/goodsContent.do?goods_id=${goods.goods_id}"> <img
 				src="/doge-jsp/img/${goods.title_img}" alt="${goods.title}">
 				<p class="goods-name">${goods.title}</p>
 				<p class="goods-price">

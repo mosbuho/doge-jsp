@@ -33,7 +33,16 @@
 	<hr>
 	<div class="goods-QnA">
 		<h2>QnA</h2>
-		<p id="QnANone">등록된 문의가 없습니다.</p>
+		<c:choose>
+			<c:when test="${empty questionList}">
+				<p id="QnANone">등록된 문의가 없습니다.</p>
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="question" items="${questionList}">
+					<p>${question.content}</p>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	<hr>
 	<div class="goods-new-QnA">
