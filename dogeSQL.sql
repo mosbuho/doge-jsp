@@ -128,5 +128,6 @@ select * from manager;
 select * from member;
 select * from goods;
 select * from purchase;
+select * from question;
 
 delete from purchase;

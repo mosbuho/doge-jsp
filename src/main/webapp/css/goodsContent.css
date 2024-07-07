@@ -99,15 +99,23 @@ h2 {
 	justify-content: space-between;
 }
 
-.goods-new-QnA textarea {
-	height: 70px;
-	width: 90%;
+textarea {
 	outline: none;
 	border: none;
 	border-radius: 5px;
 	background: var(--input-background);
 	resize: none;
 	padding: 5px;
+}
+
+.goods-new-QnA textarea {
+	height: 70px;
+	width: 90%;
+}
+
+.edit-content {
+	height: 50px;
+	width: 100%;
 }
 
 .goods-new-QnA button {

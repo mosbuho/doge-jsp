@@ -69,4 +69,17 @@ public class QuestionDAO {
 			e.printStackTrace();
 		}
 	}
+
+	public void updateQuestion(int question_id, String content) {
+		try (Connection conn = DBUtil.getConnection();
+				PreparedStatement pstmt = conn
+						.prepareStatement("update question set content = ? where question_id = ?")) {
+			pstmt.setString(1, content);
+			pstmt.setInt(2, question_id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
 }

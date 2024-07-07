@@ -39,7 +39,7 @@ function submitPurchase(member_id, goods_id, quantity) {
 
 
 	if (member_name.trim() === '' || member_addr.trim() === '' || card_name === '' || card_number.trim() === '' || expiry_date.trim() === '' || cvv.trim() === '') {
-		alert("입력값을 확인해주세요.")
+		alert("입력값을 확인해주세요.");
 	} else {
 		fetch("/doge-jsp/purchaseProcess.do", {
 			method: "POST",

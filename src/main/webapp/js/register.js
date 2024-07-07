@@ -27,7 +27,9 @@ function submitRegisterForm() {
 	const pwRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
 	const nameRegex = /^[a-zA-Z가-힣]{2,24}$/;
 
-	if (id.length < 4 || id.length > 16 || !idRegex.test(id)) {
+	if (id.trim() === '' || pw.trim() === '' || pwCheck.trim() === '' || name.trim() === '' || phone.trim() === '' || addr.trim() === '') {
+		alert("값을 입력해주세요.");
+	} else if (id.length < 4 || id.length > 16 || !idRegex.test(id)) {
 		alert('아이디는 영문, 숫자로 이루어진 4자 이상 16자 이하여야 합니다.');
 		return;
 	} else if (!pwRegex.test(pw)) {

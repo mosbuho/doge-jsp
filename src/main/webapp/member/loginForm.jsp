@@ -14,6 +14,6 @@
 				required>
 		</div>
 		<button type="button" onclick="submitLoginForm()">로그인</button>
-		<span>계정 없으면</span> <a href="/doge-jsp/registerForm.do">회원가입</a>
+		<span>계정이 없다면 </span> <a href="/doge-jsp/registerForm.do">회원가입</a>
 	</form>
 </div>

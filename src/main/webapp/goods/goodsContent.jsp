@@ -44,7 +44,7 @@
 							<div class="question-top-left">${question.m_id}</div>
 							<c:if test="${question.member_id == sessionScope.member_id}">
 								<div class="question-top-right">
-									<button>수정</button>
+									<button onclick="editQuestion(${question.question_id})">수정</button>
 									<button onclick="delQuestion(${question.question_id})">삭제</button>
 								</div>
 							</c:if>

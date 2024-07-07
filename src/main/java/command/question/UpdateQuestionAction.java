@@ -1,4 +1,4 @@
-package command.cart;
+package command.question;
 
 import java.io.BufferedReader;
 
@@ -7,11 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
-import bean.CartBean;
-import dao.CartDAO;
+import dao.QuestionDAO;
 import process.CommandAction;
 
-public class AddToCartAction implements CommandAction {
+public class UpdateQuestionAction implements CommandAction {
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -24,15 +23,12 @@ public class AddToCartAction implements CommandAction {
 				sb.append(line);
 			}
 		}
+
 		JSONObject jsonRequest = new JSONObject(sb.toString());
-		int member_id = jsonRequest.getInt("member_id");
-		int goods_id = jsonRequest.getInt("goods_id");
-		int quantity = jsonRequest.getInt("quantity");
-
-		CartBean cart = new CartBean(member_id, goods_id, quantity);
-
-		CartDAO cdao = CartDAO.getInstance();
-		cdao.addCart(cart);
+		int question_id = jsonRequest.getInt("question_id");
+		String content = jsonRequest.getString("content");
+		QuestionDAO qdao = QuestionDAO.getInstance();
+		qdao.updateQuestion(question_id, content);
 
 		return null;
 	}
