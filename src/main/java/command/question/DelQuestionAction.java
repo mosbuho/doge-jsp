@@ -1,4 +1,4 @@
-package command.member;
+package command.question;
 
 import java.io.BufferedReader;
 
@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
-import dao.MemberDAO;
+import dao.QuestionDAO;
 import process.CommandAction;
 
-public class LoginProcessAction implements CommandAction {
+public class DelQuestionAction implements CommandAction {
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -25,20 +25,10 @@ public class LoginProcessAction implements CommandAction {
 		}
 
 		JSONObject jsonRequest = new JSONObject(sb.toString());
-		String id = jsonRequest.getString("id");
-		String pw = jsonRequest.getString("pw");
+		int question_id = jsonRequest.getInt("question_id");
+		QuestionDAO qdao = QuestionDAO.getInstance();
+		qdao.delQuestion(question_id);
 
-		MemberDAO member = MemberDAO.getInstance();
-		int member_id = member.login(id, pw);
-
-		if (member_id != 0) {
-			request.getSession().setAttribute("member_id", member_id);
-			request.getSession().setAttribute("m_id", id);
-		}
-
-		JSONObject jsonResponse = new JSONObject();
-		jsonResponse.put("member_id", member_id);
-		response.getWriter().write(jsonResponse.toString());
 		return null;
 	}
 }

@@ -29,7 +29,11 @@ public class NewQuestionAction implements CommandAction {
 		int goods_id = jsonRequest.getInt("goods_id");
 		String content = jsonRequest.getString("content");
 		QuestionDAO qdao = QuestionDAO.getInstance();
-		qdao.newQuestion(member_id, goods_id, content);
+		int question_id = qdao.newQuestion(member_id, goods_id, content);
+
+		JSONObject jsonResponse = new JSONObject();
+		jsonResponse.put("question_id", question_id);
+		response.getWriter().write(jsonResponse.toString());
 
 		return null;
 	}

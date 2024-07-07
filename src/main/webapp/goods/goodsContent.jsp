@@ -39,7 +39,18 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach var="question" items="${questionList}">
-					<p>${question.content}</p>
+					<div class="question" id="question-${question.question_id}">
+						<div class="question-top">
+							<div class="question-top-left">${question.m_id}</div>
+							<c:if test="${question.member_id == sessionScope.member_id}">
+								<div class="question-top-right">
+									<button>수정</button>
+									<button onclick="delQuestion(${question.question_id})">삭제</button>
+								</div>
+							</c:if>
+						</div>
+						<div class="question-bottom">${question.content}</div>
+					</div>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
@@ -47,6 +58,6 @@
 	<hr>
 	<div class="goods-new-QnA">
 		<textarea id="QnAContent" placeholder="문의 내용을 입력해주세요." maxlength="1000"></textarea>
-		<button onclick="newQuestion(${memberId}, ${goods.goods_id})">등록</button>
+		<button onclick="newQuestion(${memberId}, ${goods.goods_id}, '${sessionScope.m_id}')">등록</button>
 	</div>
 </div>
