@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="/doge-jsp/css/profileMain.css">
+<link rel="stylesheet" href="/doge-jsp/css/updateMemberForm.css">
 <script src="/doge-jsp/js/updateMemberForm.js"></script>
 <div class="header">
 	<h1>내 정보</h1>
@@ -31,4 +31,5 @@
 		<input type="text" id="addr" name="addr" value="${member.addr}" required>
 	</div>
 	<button type="button" onclick="submitUpdateForm(${member.member_id})">수정</button>
+	<button type="button" class="deleteButton" onclick="submitDelete(${member.member_id})">탈퇴</button>
 </form>

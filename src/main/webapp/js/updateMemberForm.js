@@ -58,3 +58,9 @@ function submitUpdateForm(member_id) {
 			});
 	}
 }
+
+function submitDelete(member_id) {
+	if (confirm("탈퇴하시겠습니까?")) {
+		location.href = "/doge-jsp/deleteMemberProcess.do";
+	}
+}

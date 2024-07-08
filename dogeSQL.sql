@@ -61,16 +61,16 @@ create table goods (
 
 create table cart (
     cart_id number default cart_pk_seq.nextval constraint cart_pk primary key,
-    member_id references member (member_id),
-    goods_id references goods (goods_id),
+    member_id references member (member_id) on delete cascade,
+    goods_id references goods (goods_id) on delete cascade,
     quantity number(4) not null,
     reg_date date default sysdate
 );
 
 create table purchase (
     purchase_id number default purchase_pk_seq.nextval constraint purchase_pk primary key,
-    member_id references member (member_id),
-    goods_id references goods (goods_id),
+    member_id references member (member_id) on delete cascade,
+    goods_id references goods (goods_id) on delete cascade,
     quantity number(4) not null,
     addr varchar2(50) not null,
     delivery_state number(1) default 0,
@@ -80,15 +80,15 @@ create table purchase (
 
 create table question (
     question_id number default question_pk_seq.nextval constraint question_pk primary key,
-    member_id constraint question_member_fk references member (member_id),
-    goods_id constraint question_goods_fk references goods (goods_id),
+    member_id constraint question_member_fk references member (member_id) on delete cascade,
+    goods_id constraint question_goods_fk references goods (goods_id) on delete cascade,
     content varchar2(1000) not null,
     reg_date date default sysdate
 );
 
 create table answer (
     answer_id number default answer_pk_seq.nextval constraint answer_pk primary key,
-    question_id number constraint answer_question_fk references question (question_id),
+    question_id number constraint answer_question_fk references question (question_id) on delete cascade,
     content varchar2(1000) not null,
     reg_date date default sysdate
 );

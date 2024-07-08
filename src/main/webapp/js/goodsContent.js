@@ -64,7 +64,7 @@ function purchase(member_id) {
 function newQuestion(member_id, goods_id, m_id) {
 	if (member_id !== 0) {
 		let content = document.getElementById('QnAContent');
-		if (content.trim() !== '') {
+		if (content.value.trim() !== '') {
 			fetch("/doge-jsp/newQuestion.do", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },

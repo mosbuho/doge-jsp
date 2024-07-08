@@ -42,9 +42,9 @@ function submitRegisterForm() {
 		alert("이름은 2자 이상의 한글 혹은 영문이어야 합니다.");
 		return;
 	} else {
-		const formData = { pw: pw, name: name, phone: phone, addr: addr };
+		const formData = { id: id, pw: pw, name: name, phone: phone, addr: addr };
 
-		fetch("/doge-jsp/updateMember.do", {
+		fetch("/doge-jsp/registerProcess.do", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(formData)

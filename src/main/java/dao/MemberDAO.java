@@ -55,6 +55,7 @@ public class MemberDAO {
 		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement pstmt = conn
 						.prepareStatement("insert into member(id, pw, name, phone, addr) values(?, ?, ?, ?, ?)")) {
+
 			SHA256 sha = SHA256.getInstance();
 			String shaPw = sha.getSha256(member.getPw().getBytes());
 			String bcPw = BCrypt.hashpw(shaPw, BCrypt.gensalt());
@@ -99,6 +100,16 @@ public class MemberDAO {
 			pstmt.setString(3, member.getPhone());
 			pstmt.setString(4, member.getAddr());
 			pstmt.setInt(5, member.getMember_id());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void deleteMember(int member_id) {
+		try (Connection conn = DBUtil.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement("delete from member where member_id = ?")) {
+			pstmt.setInt(1, member_id);
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

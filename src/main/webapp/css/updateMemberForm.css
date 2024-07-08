@@ -66,3 +66,7 @@ button {
 	color: var(--button-color);
 	background: var(--button-background);
 }
+
+button.deleteButton {
+	background: red;
+}
