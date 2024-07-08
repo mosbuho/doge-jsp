@@ -19,6 +19,14 @@ public class MemberBean {
 		this.addr = addr;
 	}
 
+	public MemberBean(int member_id, String pw, String name, String phone, String addr) {
+		this.member_id = member_id;
+		this.pw = pw;
+		this.name = name;
+		this.phone = phone;
+		this.addr = addr;
+	}
+
 	public MemberBean(int member_id, String id, String pw, String name, String phone, String addr, Date reg_Date) {
 		this.member_id = member_id;
 		this.id = id;

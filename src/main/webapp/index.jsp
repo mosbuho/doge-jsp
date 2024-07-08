@@ -32,7 +32,7 @@
 						<a href="/doge-jsp/loginForm.do"> <i class="fa-solid fa-user"></i>
 						</a>
 					</c:if> <c:if test="${!empty sessionScope.member_id}">
-						<a href="/doge-jsp/logoutProcess.do"> <i class="fa-solid fa-user"></i>
+						<a href="/doge-jsp/updateMemberForm.do"> <i class="fa-solid fa-user"></i>
 						</a>
 					</c:if></li>
 				<c:if test="${!empty sessionScope.admin }">

@@ -10,6 +10,5 @@ public class RegisterFormAction implements CommandAction {
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		return "/member/registerForm.jsp";
-		
 	}
 }

@@ -14,8 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-
-function submitRegisterForm() {
+function submitUpdateForm(member_id) {
 	const id = document.getElementById('id').value;
 	const pw = document.getElementById('pw').value;
 	const pwCheck = document.getElementById('pwCheck').value;
@@ -42,19 +41,19 @@ function submitRegisterForm() {
 		alert("이름은 2자 이상의 한글 혹은 영문이어야 합니다.");
 		return;
 	} else {
-		const formData = { pw: pw, name: name, phone: phone, addr: addr };
+		const formData = { member_id: member_id, pw: pw, name: name, phone: phone, addr: addr };
 
-		fetch("/doge-jsp/updateMember.do", {
+		fetch("/doge-jsp/updateMemberProcess.do", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(formData)
 		})
 			.then(response => {
 				if (response.ok) {
-					alert("회원가입 성공");
+					alert("정보 수정 성공");
 					location.href = "/doge-jsp/index.do";
 				} else {
-					alert("아이디가 중복됩니다. 다른 아이디를 사용해주세요.");
+					alert("정보 수정 중 오류가 발생했습니다. 다시 시도해주세요.");
 				}
 			});
 	}

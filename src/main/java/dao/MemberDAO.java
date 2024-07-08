@@ -51,11 +51,11 @@ public class MemberDAO {
 	}
 
 	public void register(MemberBean member) {
-		SHA256 sha = SHA256.getInstance();
 
 		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement pstmt = conn
 						.prepareStatement("insert into member(id, pw, name, phone, addr) values(?, ?, ?, ?, ?)")) {
+			SHA256 sha = SHA256.getInstance();
 			String shaPw = sha.getSha256(member.getPw().getBytes());
 			String bcPw = BCrypt.hashpw(shaPw, BCrypt.gensalt());
 
@@ -85,5 +85,23 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 		return member;
+	}
+
+	public void updateMember(MemberBean member) {
+		try (Connection conn = DBUtil.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(
+						"update member set pw = ?, name = ?, phone = ?, addr = ? where member_id = ?")) {
+			SHA256 sha = SHA256.getInstance();
+			String shaPw = sha.getSha256(member.getPw().getBytes());
+			String bcPw = BCrypt.hashpw(shaPw, BCrypt.gensalt());
+			pstmt.setString(1, bcPw);
+			pstmt.setString(2, member.getName());
+			pstmt.setString(3, member.getPhone());
+			pstmt.setString(4, member.getAddr());
+			pstmt.setInt(5, member.getMember_id());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
