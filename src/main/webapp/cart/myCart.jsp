@@ -13,15 +13,14 @@
 				가격 :
 				<span id="price-${item.goods_id}" data-doge-price="${item.price * tmpPrice}" data-usd-price="${item.price}">
 					<fmt:formatNumber value="${item.price * tmpPrice}" maxFractionDigits="0" />
-					DOGE &nbsp; - &nbsp; $${item.price}0
+					DOGE [$${item.price}0]
 				</span>
 			</div>
 			<div class="cart-item-total">
 				총 :
 				<span id="total-${item.goods_id}">
 					<span class="doge-price"></span>
-					DOGE &nbsp; - &nbsp; $
-					<span class="usd-price"></span>
+					DOGE [$<span class="usd-price"></span>]
 				</span>
 			</div>
 			<div class="cart-quantity">
@@ -35,8 +34,7 @@
 <div>
 	총 금액 :
 	<span id="cart-total-doge"></span>
-	DOGE - $
-	<span id="cart-total-usd"></span>
+	DOGE [$<span id="cart-total-usd"></span>]
 </div>
 <div class="purchase-form-inputs">
 	<label for="member_name">수령인</label>

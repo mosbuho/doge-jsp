@@ -21,7 +21,7 @@
 			</div>
 			<div class="total-price">
 				<label for="total_price"></label>
-				<span>${dogePrice * quantity} DOGE - \$ ${goods.price * quantity}</span>
+				<span>${dogePrice * quantity} DOGE [\$ ${goods.price * quantity}]</span>
 			</div>
 		</div>
 	</div>

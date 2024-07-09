@@ -73,7 +73,10 @@ function newQuestion(member_id, goods_id, m_id) {
 				.then(response => response.json())
 				.then(data => {
 					if (data.question_id != 0) {
-						alert("문의가 등록되었습니다.");
+						let qnaNone = document.querySelector('.goods-QnA').querySelector('#QnANone');
+						if (qnaNone) {
+							qnaNone.remove();
+						}
 
 						let newQuestion = document.createElement('div');
 						newQuestion.classList.add('question');
@@ -91,6 +94,7 @@ function newQuestion(member_id, goods_id, m_id) {
 					`;
 						document.querySelector('.goods-QnA').appendChild(newQuestion);
 						content.value = '';
+						alert("문의가 등록되었습니다.");
 					} else {
 						alert("문의 등록 중 오류가 발생했습니다. 다시 시도해주세요.");
 					}

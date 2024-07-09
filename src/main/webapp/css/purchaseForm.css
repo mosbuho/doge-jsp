@@ -6,6 +6,10 @@ main {
 	margin: 0 auto;
 }
 
+.purchase-form {
+	width: 600px;
+}
+
 .purchase-form h2 {
 	text-align: center;
 	margin-bottom: 20px;

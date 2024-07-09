@@ -19,14 +19,14 @@
 					<div class="purchase-text">
 						<div class="purchase-header">
 							<span class="purchase-title">${purchase.title}</span>
-							<span class="purchase-price">\$${purchase.price}.00</span>
+							<span class="purchase-price">${tmpPrice * purchase.price} DOGE [\$${purchase.price}.00]</span>
 						</div>
 						<div>주문 수량 : ${purchase.quantity}</div>
 						<div>주문자(수령인) : ${purchase.name}</div>
 						<div>배송지 : ${purchase.addr}</div>
 						<div class="delivery-state">
 							<c:choose>
-								<c:when test="${purchase.delivery_state == 0}">주문 접수</c:when>
+								<c:when test="${purchase.delivery_state == 0}">배송 준비중</c:when>
 								<c:when test="${purchase.delivery_state == 1}">배송 중</c:when>
 								<c:when test="${purchase.delivery_state == 2}">배송 완료</c:when>
 								<c:otherwise>알 수 없음</c:otherwise>
@@ -38,8 +38,7 @@
 			<span class="total-price">
 				결제 금액:
 				<fmt:formatNumber value="${firstPurchase.total_doge}" type="number" groupingUsed="true" />
-				DOGE - $
-				<fmt:formatNumber value="${firstPurchase.total_usd}" type="number" groupingUsed="true" />.00
+				DOGE [$<fmt:formatNumber value="${firstPurchase.total_usd}" type="number" groupingUsed="true" />.00]
 			</span>
 			<span class="purchase-date">주문일 : ${firstPurchase.reg_date}</span>
 		</div>

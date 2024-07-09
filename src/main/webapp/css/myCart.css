@@ -90,6 +90,7 @@ main {
 
 .purchase-form-inputs input[type="text"], .purchase-form-inputs input[type="number"]
 	{
+	background: var(--input-background);
 	width: 100%;
 	padding: 10px;
 	margin-bottom: 10px;

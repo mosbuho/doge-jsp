@@ -19,7 +19,7 @@ public class GoodsMainAction implements CommandAction {
 		ArrayList<GoodsBean> goodsList = gdao.getGoodsList(category);
 
 		DogePrice dp = DogePrice.getInstance();
-		double tmpPrice = dp.getDogePrice();
+		int tmpPrice = (int) Math.round(dp.getDogePrice());
 
 		request.setAttribute("goodsList", goodsList);
 		request.setAttribute("tmpPrice", tmpPrice);
