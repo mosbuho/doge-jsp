@@ -3,7 +3,7 @@
 <script src="/doge-jsp/js/updateMemberForm.js"></script>
 <div class="header">
 	<h1>내 정보</h1>
-	<span>내 정보</span> <a>구매내역</a> <a>문의내역</a>
+	<span>내 정보</span> <a href="/doge-jsp/purchaseList.do">구매내역</a> <a>문의내역</a>
 </div>
 <form id="registerForm">
 	<div class="input-group">
@@ -31,5 +31,6 @@
 		<input type="text" id="addr" name="addr" value="${member.addr}" required>
 	</div>
 	<button type="button" onclick="submitUpdateForm(${member.member_id})">수정</button>
-	<button type="button" class="deleteButton" onclick="submitDelete(${member.member_id})">탈퇴</button>
+	<button type="button" class="logoutButton" onclick="logout()">로그아웃</button>
+	<button type="button" class="deleteButton" onclick="submitDelete()">탈퇴</button>
 </form>

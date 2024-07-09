@@ -44,7 +44,7 @@ function submitPurchase(member_id, goods_id, quantity) {
 		fetch("/doge-jsp/purchaseProcess.do", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ member_id: member_id, goods_id: goods_id, quantity: quantity, addr: member_addr })
+			body: JSON.stringify({ member_id: member_id, name: member_name, goods_id: goods_id, quantity: quantity, addr: member_addr })
 		})
 			.then(response => {
 				if (response.ok) {

@@ -68,5 +68,9 @@ button {
 }
 
 button.deleteButton {
-	background: red;
+	background: #ff5d5d;
+}
+
+button.logoutButton {
+	background: #488948;
 }

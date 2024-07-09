@@ -30,10 +30,11 @@ public class PurchaseProcessAction implements CommandAction {
 		int member_id = jsonRequest.getInt("member_id");
 		int goods_id = jsonRequest.getInt("goods_id");
 		int quantity = jsonRequest.getInt("quantity");
+		String name = jsonRequest.getString("name");
 		String addr = jsonRequest.getString("addr");
 
 		PurchaseDAO pdao = PurchaseDAO.getInstance();
-		pdao.purchase(member_id, goods_id, quantity, addr, UUID.randomUUID().toString());
+		pdao.purchase(member_id, goods_id, quantity, name, addr, UUID.randomUUID().toString());
 
 		GoodsDAO gdao = GoodsDAO.getInstance();
 		gdao.purchaseGoods(goods_id, quantity);

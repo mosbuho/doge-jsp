@@ -59,8 +59,16 @@ function submitUpdateForm(member_id) {
 	}
 }
 
-function submitDelete(member_id) {
+function submitDelete() {
 	if (confirm("탈퇴하시겠습니까?")) {
 		location.href = "/doge-jsp/deleteMemberProcess.do";
+		alert("탈퇴가 완료되었습니다.");
+	}
+}
+
+function logout() {
+	if (confirm("로그아웃 하시겠습니까?")) {
+		location.href = "/doge-jsp/logoutProcess.do";
+		alert("로그아웃이 완료되었습니다.");
 	}
 }

@@ -30,6 +30,7 @@ public class PurchaseAllProcessAction implements CommandAction {
 
 		JSONObject jsonRequest = new JSONObject(sb.toString());
 		int member_id = jsonRequest.getInt("member_id");
+		String name = jsonRequest.getString("name");
 		String addr = jsonRequest.getString("addr");
 		JSONArray goodsList = jsonRequest.getJSONArray("goodsList");
 
@@ -41,7 +42,7 @@ public class PurchaseAllProcessAction implements CommandAction {
 			JSONObject item = goodsList.getJSONObject(i);
 			int goods_id = item.getInt("goods_id");
 			int quantity = item.getInt("quantity");
-			pdao.purchase(member_id, goods_id, quantity, addr, uuid);
+			pdao.purchase(member_id, goods_id, quantity, name, addr, uuid);
 			gdao.purchaseGoods(goods_id, quantity);
 		}
 		CartDAO cdao = CartDAO.getInstance();

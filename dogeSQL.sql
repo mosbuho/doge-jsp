@@ -72,8 +72,9 @@ create table purchase (
     member_id references member (member_id) on delete cascade,
     goods_id references goods (goods_id) on delete cascade,
     quantity number(4) not null,
+    name varchar2(24) not null,
     addr varchar2(50) not null,
-    delivery_state number(1) default 0,
+    delivery_state number(1) default 0,  /* 0 = 배송 준비 1 = 배송 중 2 = 배송 완료 */
     transaction_id varchar2(36) not null,
     reg_date date default sysdate
 );

@@ -1,0 +1,88 @@
+main {
+	padding: 110px 0 55px 0;
+	margin: 0 auto;
+	width: 600px;
+	text-align: center;
+}
+
+.header {
+	margin-bottom: 40px;
+}
+
+.header a {
+	color: 9b9b9b;
+	margin: 0 20px;
+}
+
+.header a:hover {
+	color: #ffc107;
+	cursor: pointer;
+}
+
+.purchase-list {
+	background: var(--background--color);
+}
+
+.transaction {
+	border-bottom: 1px solid var(--border-color);
+	padding: 20px 0;
+	text-align: left;
+}
+
+.purchase-id {
+	display: block;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+.in-transaction {
+	margin: 2px 0;
+	display: flex;
+	align-items: center;
+	padding: 10px 0;
+}
+
+.transaction img {
+	width: 150px;
+	height: 150px;
+	margin-right: 20px;
+	border-radius: 8px;
+	object-fit: cover;
+}
+
+.purchase-date {
+	float: right;
+	font-size: 14px;
+}
+
+.purchase-title {
+	font-size: 20px;
+	display: block;
+	margin-right: 20px;
+	font-weight: bold;
+}
+
+.purchase-price {
+	font-size: 18px;
+	margin-left: auto;
+	color: #ffc107;
+}
+
+.purchase-header {
+	display: flex;
+	align-items: center;
+}
+
+.delivery-state {
+	margin-top: 10px;
+	padding: 5px;
+	border-radius: 4px;
+	background: var(--border-color);
+	text-align: center;
+}
+
+.total-price {
+	font-size: 14px;
+	font-weight: bold;
+	color: #ff5722;
+}
