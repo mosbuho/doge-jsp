@@ -86,3 +86,8 @@ main {
 	font-weight: bold;
 	color: #ff5722;
 }
+
+.purchase-text {
+	width: 100%;
+	height: 100%;
+}

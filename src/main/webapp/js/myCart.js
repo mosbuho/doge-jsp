@@ -104,8 +104,10 @@ function purchase(member_id) {
 		cartItems.forEach(item => {
 			const itemId = item.querySelector('.cart-details input').id.split('-')[1];
 			const quantity = parseInt(document.getElementById(`quantity-${itemId}`).value);
+			const total_usd = parseInt(document.getElementById('cart-total-usd').textContent.trim().replace(/,/g, ''));
+			const total_doge = parseInt(document.getElementById('cart-total-doge').textContent.trim().replace(/,/g, ''));
 			if (quantity > 0) {
-				goodsList.push({ goods_id: itemId, quantity: quantity });
+				goodsList.push({ goods_id: itemId, quantity: quantity, total_usd: total_usd, total_doge: total_doge });
 			}
 		});
 		if (goodsList.length === 0) {

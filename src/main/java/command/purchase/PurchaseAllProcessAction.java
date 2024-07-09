@@ -42,7 +42,9 @@ public class PurchaseAllProcessAction implements CommandAction {
 			JSONObject item = goodsList.getJSONObject(i);
 			int goods_id = item.getInt("goods_id");
 			int quantity = item.getInt("quantity");
-			pdao.purchase(member_id, goods_id, quantity, name, addr, uuid);
+			int total_usd = item.getInt("total_usd");
+			int total_doge = item.getInt("total_doge");
+			pdao.purchase(member_id, goods_id, quantity, name, addr, total_usd, total_doge, uuid);
 			gdao.purchaseGoods(goods_id, quantity);
 		}
 		CartDAO cdao = CartDAO.getInstance();

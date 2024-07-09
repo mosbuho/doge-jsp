@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <link rel="stylesheet" href="/doge-jsp/css/purchaseList.css">
 <div class="header">
 	<h1>구매 내역</h1>
@@ -9,12 +10,10 @@
 </div>
 <div class="purchase-list">
 	<c:forEach var="transactionId" items="${purchaseMap.keySet()}">
-		<c:set var="totalPrice" value="0" />
 		<c:set var="firstPurchase" value="${purchaseMap[transactionId][0]}" />
 		<div class="transaction">
 			<span class="purchase-id">주문번호 : ${transactionId}</span>
 			<c:forEach var="purchase" items="${purchaseMap[transactionId]}">
-				<c:set var="totalPrice" value="${totalPrice + (purchase.price * purchase.quantity)}" />
 				<div class="in-transaction">
 					<img src="/doge-jsp/img/${purchase.title_img}">
 					<div class="purchase-text">
@@ -36,7 +35,12 @@
 					</div>
 				</div>
 			</c:forEach>
-			<span class="total-price">총 금액: \$${totalPrice}.00</span>
+			<span class="total-price">
+				결제 금액:
+				<fmt:formatNumber value="${firstPurchase.total_doge}" type="number" groupingUsed="true" />
+				DOGE - $
+				<fmt:formatNumber value="${firstPurchase.total_usd}" type="number" groupingUsed="true" />.00
+			</span>
 			<span class="purchase-date">주문일 : ${firstPurchase.reg_date}</span>
 		</div>
 	</c:forEach>

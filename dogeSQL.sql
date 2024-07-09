@@ -74,6 +74,8 @@ create table purchase (
     quantity number(4) not null,
     name varchar2(24) not null,
     addr varchar2(50) not null,
+    total_usd number(6) check (total_usd >= 0) not null,
+    total_doge number(12) check (total_doge >= 0) not null,
     delivery_state number(1) default 0,  /* 0 = 배송 준비 1 = 배송 중 2 = 배송 완료 */
     transaction_id varchar2(36) not null,
     reg_date date default sysdate

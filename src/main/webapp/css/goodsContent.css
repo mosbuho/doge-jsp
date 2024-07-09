@@ -41,7 +41,7 @@ main {
 }
 
 .goods-image img {
-	max-width: 400px;
+	width: 330px;
 	height: 330px;
 }
 

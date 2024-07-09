@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-function submitPurchase(member_id, goods_id, quantity) {
+function submitPurchase(member_id, goods_id, quantity, total_usd, total_doge) {
 	const member_name = document.getElementById("member_name").value;
 	const member_addr = document.getElementById("member_addr").value;
 	const card_name = document.getElementById("card_name").value;
@@ -44,7 +44,7 @@ function submitPurchase(member_id, goods_id, quantity) {
 		fetch("/doge-jsp/purchaseProcess.do", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ member_id: member_id, name: member_name, goods_id: goods_id, quantity: quantity, addr: member_addr })
+			body: JSON.stringify({ member_id: member_id, name: member_name, goods_id: goods_id, quantity: quantity, addr: member_addr, total_usd: total_usd, total_doge:total_doge  })
 		})
 			.then(response => {
 				if (response.ok) {
