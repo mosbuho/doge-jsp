@@ -29,9 +29,11 @@
 }
 
 main {
-	padding: 140px 0 75px 0;
+	padding: 110px 0 75px 0;
 	display: flex;
 	justify-content: center;
+	width: 600px;
+	margin: 0 auto;
 }
 
 .goods-detail-container {

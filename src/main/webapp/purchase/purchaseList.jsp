@@ -6,7 +6,7 @@
 	<h1>구매 내역</h1>
 	<a href="/doge-jsp/updateMemberForm.do">내 정보</a>
 	<span>구매내역</span>
-	<a>문의내역</a>
+	<a href="/doge-jsp/questionList.do">문의내역</a>
 </div>
 <div class="purchase-list">
 	<c:forEach var="transactionId" items="${purchaseMap.keySet()}">
@@ -38,7 +38,9 @@
 			<span class="total-price">
 				결제 금액:
 				<fmt:formatNumber value="${firstPurchase.total_doge}" type="number" groupingUsed="true" />
-				DOGE [$<fmt:formatNumber value="${firstPurchase.total_usd}" type="number" groupingUsed="true" />.00]
+				DOGE [$
+				<fmt:formatNumber value="${firstPurchase.total_usd}" type="number" groupingUsed="true" />
+				.00]
 			</span>
 			<span class="purchase-date">주문일 : ${firstPurchase.reg_date}</span>
 		</div>

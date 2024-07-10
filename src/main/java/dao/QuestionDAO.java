@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import bean.QuestionBean;
 import dbcon.DBUtil;
@@ -24,7 +25,7 @@ public class QuestionDAO {
 
 		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(
-						"insert into question(member_id, goods_id, content) values(?,?,?)",
+						"insert into question(member_id, goods_id, content) values(?, ?, ?)",
 						new String[] { "question_id" })) {
 			pstmt.setInt(1, member_id);
 			pstmt.setInt(2, goods_id);
@@ -80,6 +81,31 @@ public class QuestionDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
 
+	public HashMap<Integer, ArrayList<QuestionBean>> getQuestionList(int member_id) {
+		HashMap<Integer, ArrayList<QuestionBean>> questionMap = new HashMap<Integer, ArrayList<QuestionBean>>();
+		try (Connection conn = DBUtil.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(
+						"select q.goods_id, q.content, q.reg_date, g.title, g.title_img from question q join goods g on q.goods_id = g.goods_id where q.member_id = ? order by q.goods_id")) {
+			pstmt.setInt(1, member_id);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				while (rs.next()) {
+					int goods_id = rs.getInt("goods_id");
+
+					if (!questionMap.containsKey(goods_id)) {
+						questionMap.put(goods_id, new ArrayList<>());
+					}
+					ArrayList<QuestionBean> questionList = questionMap.get(goods_id);
+
+					QuestionBean question = new QuestionBean(rs.getInt("goods_id"), rs.getString("content"),
+							rs.getDate("reg_date"), rs.getString("title"), rs.getString("title_img"));
+					questionList.add(question);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return questionMap;
 	}
 }

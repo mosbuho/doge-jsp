@@ -3,7 +3,8 @@
 <script src="/doge-jsp/js/updateMemberForm.js"></script>
 <div class="header">
 	<h1>내 정보</h1>
-	<span>내 정보</span> <a href="/doge-jsp/purchaseList.do">구매내역</a> <a>문의내역</a>
+	<span>내 정보</span>
+	<a href="/doge-jsp/purchaseList.do">구매내역</a> <a href="/doge-jsp/questionList.do">문의내역</a>
 </div>
 <form id="registerForm">
 	<div class="input-group">
