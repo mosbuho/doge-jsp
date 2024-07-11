@@ -14,6 +14,7 @@ public class LogoutProcessAction implements CommandAction {
 		if (session != null) {
 			session.invalidate();
 		}
-		return "/main/main.jsp";
+		response.sendRedirect("/doge-jsp/index.do");
+		return null;
 	}
 }

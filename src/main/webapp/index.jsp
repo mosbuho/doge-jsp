@@ -36,7 +36,7 @@
 						</a>
 					</c:if></li>
 				<c:if test="${!empty sessionScope.admin }">
-					<li><a href="#"> <i class="fa-solid fa-toolbox"></i>
+					<li><a href="/doge-jsp/managerUserList.do"> <i class="fa-solid fa-toolbox"></i>
 					</a></li>
 				</c:if>
 				<c:if test="${!empty sessionScope.member_id }">

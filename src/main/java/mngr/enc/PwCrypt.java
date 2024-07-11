@@ -18,7 +18,6 @@ public class PwCrypt {
 
 	private PwCrypt() {}
 	
-	/** 비밀번호 암호화 */
 	public void cryptProcess() {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

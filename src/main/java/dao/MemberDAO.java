@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import bean.MemberBean;
 import dbcon.DBUtil;
@@ -114,5 +115,22 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public ArrayList<MemberBean> getMemberList() {
+		ArrayList<MemberBean> memberList = new ArrayList<MemberBean>();
+		try (Connection conn = DBUtil.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement("select * from member")) {
+			try (ResultSet rs = pstmt.executeQuery()) {
+				while (rs.next()) {
+					MemberBean member = new MemberBean(rs.getInt("member_id"), rs.getString("id"), rs.getString("pw"),
+							rs.getString("name"), rs.getString("phone"), rs.getString("addr"), rs.getDate("reg_date"));
+					memberList.add(member);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return memberList;
 	}
 }

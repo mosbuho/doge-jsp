@@ -11,5 +11,4 @@ public class ManagerLoginFormAction implements CommandAction {
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		return "/manager/managerLoginForm.jsp";
 	}
-
 }

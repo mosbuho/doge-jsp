@@ -9,7 +9,7 @@ public class MemberBean {
 	private String name;
 	private String phone;
 	private String addr;
-	private Date reg_Date;
+	private Date reg_date;
 
 	public MemberBean(String id, String pw, String name, String phone, String addr) {
 		this.id = id;
@@ -34,7 +34,7 @@ public class MemberBean {
 		this.name = name;
 		this.phone = phone;
 		this.addr = addr;
-		this.reg_Date = reg_Date;
+		this.reg_date = reg_Date;
 	}
 
 	public int getMember_id() {
@@ -85,16 +85,16 @@ public class MemberBean {
 		this.addr = addr;
 	}
 
-	public Date getReg_Date() {
-		return reg_Date;
+	public Date getReg_date() {
+		return reg_date;
 	}
 
-	public void setReg_Date(Date reg_Date) {
-		this.reg_Date = reg_Date;
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
 	}
 
 	@Override
 	public String toString() {
-		return "id=" + id + ", pw=" + pw + ", phone=" + phone + ", addr=" + addr + ", reg_Date=" + reg_Date;
+		return "id=" + id + ", pw=" + pw + ", phone=" + phone + ", addr=" + addr + ", reg_date=" + reg_date;
 	}
 }

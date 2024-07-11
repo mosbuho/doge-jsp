@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <link rel="stylesheet" href="/doge-jsp/css/purchaseList.css">
 <div class="header">
 	<h1>구매 내역</h1>
-	<a href="/doge-jsp/updateMemberForm.do">내 정보</a>
-	<span>구매내역</span>
-	<a href="/doge-jsp/questionList.do">문의내역</a>
+	<a href="/doge-jsp/updateMemberForm.do">내 정보</a> <span>구매내역</span> <a
+		href="/doge-jsp/questionList.do">문의내역</a>
 </div>
 <div class="purchase-list">
 	<c:forEach var="transactionId" items="${purchaseMap.keySet()}">
@@ -18,8 +18,9 @@
 					<img src="/doge-jsp/img/${purchase.title_img}">
 					<div class="purchase-text">
 						<div class="purchase-header">
-							<span class="purchase-title">${purchase.title}</span>
-							<span class="purchase-price">${tmpPrice * purchase.price} DOGE [\$${purchase.price}.00]</span>
+							<span class="purchase-title">${purchase.title}</span> <span
+								class="purchase-price">${tmpPrice * purchase.price} DOGE
+								[\$${purchase.price}.00]</span>
 						</div>
 						<div>주문 수량 : ${purchase.quantity}</div>
 						<div>주문자(수령인) : ${purchase.name}</div>
@@ -35,14 +36,12 @@
 					</div>
 				</div>
 			</c:forEach>
-			<span class="total-price">
-				결제 금액:
-				<fmt:formatNumber value="${firstPurchase.total_doge}" type="number" groupingUsed="true" />
-				DOGE [$
-				<fmt:formatNumber value="${firstPurchase.total_usd}" type="number" groupingUsed="true" />
-				.00]
-			</span>
-			<span class="purchase-date">주문일 : ${firstPurchase.reg_date}</span>
+			<span class="total-price"> 결제 금액: <fmt:formatNumber
+					value="${firstPurchase.total_doge}" type="number"
+					groupingUsed="true" /> DOGE [$ <fmt:formatNumber
+					value="${firstPurchase.total_usd}" type="number"
+					groupingUsed="true" /> .00]
+			</span> <span class="purchase-date">주문일 : ${firstPurchase.reg_date}</span>
 		</div>
 	</c:forEach>
 </div>
