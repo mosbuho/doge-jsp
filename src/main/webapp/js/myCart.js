@@ -89,15 +89,15 @@ function initializePrices() {
 // ===========================================================
 
 function purchase(member_id) {
-	const member_name = document.getElementById("member_name").value;
-	const member_addr = document.getElementById("member_addr").value;
-	const card_name = document.getElementById("card_name").value;
-	const card_number = document.getElementById("card_number").value;
-	const expiry_date = document.getElementById("expiry_date").value;
-	const cvv = document.getElementById("cvv").value;
+	const member_name = document.getElementById('member_name').value;
+	const member_addr = document.getElementById('member_addr').value;
+	const card_name = document.getElementById('card_name').value;
+	const card_number = document.getElementById('card_number').value;
+	const expiry_date = document.getElementById('expiry_date').value;
+	const cvv = document.getElementById('cvv').value;
 
 	if (member_name.trim() === '' || member_addr.trim() === '' || card_name === '' || card_number.trim() === '' || expiry_date.trim() === '' || cvv.trim() === '') {
-		alert("입력값을 확인해주세요.");
+		alert('입력값을 확인해주세요.');
 	} else {
 		let goodsList = [];
 		const cartItems = document.querySelectorAll('.cart-item');
@@ -111,21 +111,23 @@ function purchase(member_id) {
 			}
 		});
 		if (goodsList.length === 0) {
-			alert("주문할 상품을 선택해주세요.");
+			alert('주문할 상품을 선택해주세요.');
 		} else {
-			fetch("/doge-jsp/purchaseAllProcess.do", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
+			fetch('/doge-jsp/purchaseAllProcess.do', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ member_id: member_id, name: member_name, goodsList: goodsList, addr: member_addr })
 			})
-				.then(response => {
-					if (response.ok) {
-						alert("구매가 완료되었습니다.");
-						location.href = "/doge-jsp/index.do";
+				.then(response => response.json())
+				.then(data => {
+					if (data.success) {
+						alert('구매가 완료되었습니다.');
+						location.href = '/doge-jsp/index.do';
 					} else {
-						alert("구매 처리 중 오류가 발생했습니다.");
+						alert('구매 처리 중 오류가 발생했습니다. 다시 시도해주세요.');
 					}
-				});
+				})
+				.catch(() => alert('구매 처리 중 오류가 발생했습니다. 다시 시도해주세요.'));
 		}
 	}
 }

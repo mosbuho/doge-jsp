@@ -30,8 +30,15 @@ public class UpdateMemberProcessAction implements CommandAction {
 		MemberBean member = new MemberBean(jsonRequest.getInt("member_id"), jsonRequest.getString("pw"),
 				jsonRequest.getString("name"), jsonRequest.getString("phone"), jsonRequest.getString("addr"));
 
+		int result = 0;
+		JSONObject jsonResponse = new JSONObject();
 		MemberDAO mdao = MemberDAO.getInstance();
-		mdao.updateMember(member);
+		result = mdao.updateMember(member);
+		jsonResponse.put("success", result != 0);
+
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(jsonResponse.toString());
 
 		return null;
 	}

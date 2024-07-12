@@ -27,8 +27,16 @@ public class UpdateQuestionAction implements CommandAction {
 		JSONObject jsonRequest = new JSONObject(sb.toString());
 		int question_id = jsonRequest.getInt("question_id");
 		String content = jsonRequest.getString("content");
+
+		int result = 0;
 		QuestionDAO qdao = QuestionDAO.getInstance();
-		qdao.updateQuestion(question_id, content);
+		result = qdao.updateQuestion(question_id, content);
+
+		JSONObject jsonResponse = new JSONObject();
+		jsonResponse.put("success", result != 0);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(jsonResponse.toString());
 
 		return null;
 	}

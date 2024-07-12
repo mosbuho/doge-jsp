@@ -19,16 +19,18 @@ public class CartDAO {
 	private CartDAO() {
 	}
 
-	public void addCart(CartBean cart) {
+	public int addCart(CartBean cart) {
+		int result = 0;
 		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement pstmt = conn.prepareCall("{call update_cart(?, ?, ?)}")) {
 			pstmt.setInt(1, cart.getMember_id());
 			pstmt.setInt(2, cart.getGoods_id());
 			pstmt.setInt(3, cart.getQuantity());
-			pstmt.executeQuery();
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 
 	public ArrayList<CartBean> getCartList(int member_id) {
@@ -49,13 +51,15 @@ public class CartDAO {
 		return cartList;
 	}
 
-	public void delCart(int member_id) {
+	public int delCart(int member_id) {
+		int result = 0;
 		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement("delete from cart where member_id = ?")) {
 			pstmt.setInt(1, member_id);
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 }

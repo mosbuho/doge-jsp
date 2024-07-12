@@ -26,6 +26,9 @@ public class PurchaseProcessAction implements CommandAction {
 			}
 		}
 
+		int pdaoResult = 0;
+		int gdaoResult = 0;
+
 		JSONObject jsonRequest = new JSONObject(sb.toString());
 		int member_id = jsonRequest.getInt("member_id");
 		int goods_id = jsonRequest.getInt("goods_id");
@@ -36,10 +39,17 @@ public class PurchaseProcessAction implements CommandAction {
 		String addr = jsonRequest.getString("addr");
 
 		PurchaseDAO pdao = PurchaseDAO.getInstance();
-		pdao.purchase(member_id, goods_id, quantity, name, addr, total_usd, total_doge, UUID.randomUUID().toString());
+		pdaoResult = pdao.purchase(member_id, goods_id, quantity, name, addr, total_usd, total_doge,
+				UUID.randomUUID().toString());
 
 		GoodsDAO gdao = GoodsDAO.getInstance();
-		gdao.purchaseGoods(goods_id, quantity);
+		gdaoResult = gdao.purchaseGoods(goods_id, quantity);
+
+		JSONObject jsonResponse = new JSONObject();
+		jsonResponse.put("success", pdaoResult != 0 && gdaoResult != 0);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(jsonResponse.toString());
 
 		return null;
 	}

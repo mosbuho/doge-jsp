@@ -20,8 +20,9 @@ public class PurchaseDAO {
 	private PurchaseDAO() {
 	}
 
-	public void purchase(int member_id, int goods_id, int quantity, String name, String addr, int total_usd,
+	public int purchase(int member_id, int goods_id, int quantity, String name, String addr, int total_usd,
 			int total_doge, String uuid) {
+		int result = 0;
 		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(
 						"insert into purchase (member_id, goods_id, quantity, name, addr, total_usd, total_doge, transaction_id) values (?, ?, ?, ?, ?, ?, ?, ?)")) {
@@ -33,10 +34,11 @@ public class PurchaseDAO {
 			pstmt.setInt(6, total_usd);
 			pstmt.setInt(7, total_doge);
 			pstmt.setString(8, uuid);
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 
 	public HashMap<String, ArrayList<PurchaseBean>> getPurchaseList(int member_id) {

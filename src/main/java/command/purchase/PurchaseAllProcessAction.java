@@ -34,9 +34,12 @@ public class PurchaseAllProcessAction implements CommandAction {
 		String addr = jsonRequest.getString("addr");
 		JSONArray goodsList = jsonRequest.getJSONArray("goodsList");
 
-		String uuid = UUID.randomUUID().toString();
 		PurchaseDAO pdao = PurchaseDAO.getInstance();
 		GoodsDAO gdao = GoodsDAO.getInstance();
+
+		int pdaoResult = 0;
+		int gdaoResult = 0;
+		int cdaoResult = 0;
 
 		for (int i = 0; i < goodsList.length(); i++) {
 			JSONObject item = goodsList.getJSONObject(i);
@@ -44,11 +47,18 @@ public class PurchaseAllProcessAction implements CommandAction {
 			int quantity = item.getInt("quantity");
 			int total_usd = item.getInt("total_usd");
 			int total_doge = item.getInt("total_doge");
-			pdao.purchase(member_id, goods_id, quantity, name, addr, total_usd, total_doge, uuid);
-			gdao.purchaseGoods(goods_id, quantity);
+			pdaoResult = pdao.purchase(member_id, goods_id, quantity, name, addr, total_usd, total_doge,
+					UUID.randomUUID().toString());
+			gdaoResult = gdao.purchaseGoods(goods_id, quantity);
 		}
 		CartDAO cdao = CartDAO.getInstance();
-		cdao.delCart(member_id);
+		cdaoResult = cdao.delCart(member_id);
+
+		JSONObject jsonResponse = new JSONObject();
+		jsonResponse.put("success", pdaoResult != 0 && gdaoResult != 0 && cdaoResult != 0);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(jsonResponse.toString());
 
 		return null;
 	}

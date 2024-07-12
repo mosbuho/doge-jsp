@@ -27,7 +27,7 @@ function submitUpdateForm(member_id) {
 	const nameRegex = /^[a-zA-Z가-힣]{2,24}$/;
 
 	if (id.trim() === '' || pw.trim() === '' || pwCheck.trim() === '' || name.trim() === '' || phone.trim() === '' || addr.trim() === '') {
-		alert("값을 입력해주세요.");
+		alert('값을 입력해주세요.');
 	} else if (id.length < 4 || id.length > 16 || !idRegex.test(id)) {
 		alert('아이디는 영문, 숫자로 이루어진 4자 이상 16자 이하여야 합니다.');
 		return;
@@ -38,41 +38,45 @@ function submitUpdateForm(member_id) {
 		alert('비밀번호가 일치하지 않습니다.');
 		return;
 	} else if (!nameRegex.test(name)) {
-		alert("이름은 2자 이상의 한글 혹은 영문이어야 합니다.");
+		alert('이름은 2자 이상의 한글 혹은 영문이어야 합니다.');
 		return;
 	} else {
 		const formData = { member_id: member_id, pw: pw, name: name, phone: phone, addr: addr };
 
-		fetch("/doge-jsp/updateMemberProcess.do", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
+		fetch('/doge-jsp/updateMemberProcess.do', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(formData)
 		})
-			.then(response => {
-				if (response.ok) {
-					alert("정보 수정 성공");
-					location.href = "/doge-jsp/index.do";
+			.then(response => response.json())
+			.then(data => {
+				if (data.success) {
+					alert('정보 수정 성공');
+					history.back();
 				} else {
-					alert("정보 수정 중 오류가 발생했습니다. 다시 시도해주세요.");
+					alert('정보 수정 중 오류가 발생했습니다. 다시 시도해주세요.');
 				}
-			});
+			})
+			.catch(() => alert('정보 수정 중 오류가 발생했습니다. 다시 시도해주세요.'));
 	}
 }
 
 function submitDelete(member_id) {
-	if (confirm("삭제하시겠습니까?")) {
+	if (confirm('삭제하시겠습니까?')) {
 		fetch(`/doge-jsp/managerUserDeleteProcess.do`, {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ member_id: member_id })
 		})
-			.then(response => {
-				if (response.ok) {
-					alert("삭제가 완료되었습니다.");
+			.then(response => response.json())
+			.then(data => {
+				if (data.success) {
+					alert('삭제가 완료되었습니다.');
 					history.back();
 				} else {
-					alert("삭제 중 오류가 발생했습니다. 다시 시도해주세요.");
+					alert('삭제 중 오류가 발생했습니다. 다시 시도해주세요.');
 				}
-			});
+			})
+			.catch(() => alert('삭제 중 오류가 발생했습니다. 다시 시도해주세요.'));
 	}
 }

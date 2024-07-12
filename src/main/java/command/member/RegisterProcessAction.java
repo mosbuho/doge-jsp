@@ -33,8 +33,15 @@ public class RegisterProcessAction implements CommandAction {
 		String addr = jsonRequest.getString("addr");
 		MemberBean member = new MemberBean(id, pw, name, phone, addr);
 
+		int result = 0;
 		MemberDAO mdao = MemberDAO.getInstance();
-		mdao.register(member);
+		result = mdao.register(member);
+
+		JSONObject jsonResponse = new JSONObject();
+		jsonResponse.put("success", result != 0);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(jsonResponse.toString());
 
 		return null;
 	}

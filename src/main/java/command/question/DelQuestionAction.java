@@ -26,9 +26,17 @@ public class DelQuestionAction implements CommandAction {
 
 		JSONObject jsonRequest = new JSONObject(sb.toString());
 		int question_id = jsonRequest.getInt("question_id");
-		QuestionDAO qdao = QuestionDAO.getInstance();
-		qdao.delQuestion(question_id);
 
+		int result = 0;
+		QuestionDAO qdao = QuestionDAO.getInstance();
+		result = qdao.delQuestion(question_id);
+
+		JSONObject jsonResponse = new JSONObject();
+		jsonResponse.put("success", result != 0);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(jsonResponse.toString());
+		
 		return null;
 	}
 }

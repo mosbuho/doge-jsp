@@ -37,12 +37,10 @@ public class ImageUploadProcessAction implements CommandAction {
 			while ((bytesRead = fileContent.read(buffer)) != -1) {
 				os.write(buffer, 0, bytesRead);
 			}
-
 			jsonResponse.put("success", true);
 			jsonResponse.put("fileName", newFileName);
 		} catch (Exception e) {
 			jsonResponse.put("success", false);
-			jsonResponse.put("message", e.getMessage());
 		}
 
 		response.setContentType("application/json");

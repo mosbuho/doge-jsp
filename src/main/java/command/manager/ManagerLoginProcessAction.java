@@ -35,8 +35,9 @@ public class ManagerLoginProcessAction implements CommandAction {
 			request.getSession().setAttribute("id", id);
 			request.getSession().setAttribute("admin", check);
 		}
+
 		JSONObject jsonResponse = new JSONObject();
-		jsonResponse.put("check", check);
+		jsonResponse.put("success", check);
 		response.getWriter().write(jsonResponse.toString());
 		return null;
 	}

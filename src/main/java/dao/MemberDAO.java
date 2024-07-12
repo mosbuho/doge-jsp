@@ -51,8 +51,8 @@ public class MemberDAO {
 		return member_id;
 	}
 
-	public void register(MemberBean member) {
-
+	public int register(MemberBean member) {
+		int result = 0;
 		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement pstmt = conn
 						.prepareStatement("insert into member(id, pw, name, phone, addr) values(?, ?, ?, ?, ?)")) {
@@ -66,10 +66,11 @@ public class MemberDAO {
 			pstmt.setString(3, member.getName());
 			pstmt.setString(4, member.getPhone());
 			pstmt.setString(5, member.getAddr());
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 
 	public MemberBean getMember(int member_id) {
@@ -89,7 +90,9 @@ public class MemberDAO {
 		return member;
 	}
 
-	public void updateMember(MemberBean member) {
+	public int updateMember(MemberBean member) {
+		int result = 0;
+
 		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(
 						"update member set pw = ?, name = ?, phone = ?, addr = ? where member_id = ?")) {
@@ -101,20 +104,23 @@ public class MemberDAO {
 			pstmt.setString(3, member.getPhone());
 			pstmt.setString(4, member.getAddr());
 			pstmt.setInt(5, member.getMember_id());
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 
-	public void deleteMember(int member_id) {
+	public int deleteMember(int member_id) {
+		int result = 0;
 		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement("delete from member where member_id = ?")) {
 			pstmt.setInt(1, member_id);
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 
 	public ArrayList<MemberBean> getMemberList() {

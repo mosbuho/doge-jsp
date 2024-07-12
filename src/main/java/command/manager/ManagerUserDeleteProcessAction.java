@@ -27,9 +27,17 @@ public class ManagerUserDeleteProcessAction implements CommandAction {
 
 			JSONObject jsonRequest = new JSONObject(sb.toString());
 			int member_id = jsonRequest.getInt("member_id");
+			int result = 0;
 
 			MemberDAO mdao = MemberDAO.getInstance();
-			mdao.deleteMember(member_id);
+			result = mdao.deleteMember(member_id);
+
+			JSONObject jsonResponse = new JSONObject();
+			jsonResponse.put("success", result != 0);
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(jsonResponse.toString());
+
 		}
 		return null;
 	}

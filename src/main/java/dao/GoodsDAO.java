@@ -53,15 +53,17 @@ public class GoodsDAO {
 		return goods;
 	}
 
-	public void purchaseGoods(int id, int quantity) {
+	public int purchaseGoods(int id, int quantity) {
+		int result = 0;
 		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement pstmt = conn
 						.prepareStatement("update goods set quantity = quantity - ? where goods_id = ?")) {
 			pstmt.setInt(1, quantity);
 			pstmt.setInt(2, id);
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 }

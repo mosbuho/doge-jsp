@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 
 		new Compressor(file, {
-			quality: 0.6,
-			maxWidth: 800,
-			maxHeight: 800,
+			quality: 0.9,
+			maxWidth: 330,
+			maxHeight: 330,
 			success(result) {
 				const formData = new FormData();
 				formData.append('file', result, result.name);
@@ -33,17 +33,15 @@ document.addEventListener('DOMContentLoaded', function() {
 							preview.innerHTML = '';
 							const img = document.createElement('img');
 							img.src = URL.createObjectURL(result);
-							img.style.maxWidth = '200px';
+							img.style.width = '330px';
+							img.style.height = '330px';
 							preview.appendChild(img);
 							document.getElementById('uploadedImageName').value = data.fileName;
 						} else {
-							alert('이미지 업로드 실패: ' + data.message);
+							alert('이미지 업로드 중 오류가 발생했습니다. 다시 시도해주세요.');
 						}
 					})
-					.catch(error => {
-						console.error('Error:', error);
-						alert('이미지 업로드 중 오류가 발생했습니다.');
-					});
+					.catch(() => alert('이미지 업로드 중 오류가 발생했습니다. 다시 시도해주세요.'));
 			}
 		});
 	});

@@ -61,26 +61,30 @@ public class QuestionDAO {
 		return questionList;
 	}
 
-	public void delQuestion(int question_id) {
+	public int delQuestion(int question_id) {
+		int result = 0;
 		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement("delete from question where question_id = ?")) {
 			pstmt.setInt(1, question_id);
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 
-	public void updateQuestion(int question_id, String content) {
+	public int updateQuestion(int question_id, String content) {
+		int result = 0;
 		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement pstmt = conn
 						.prepareStatement("update question set content = ? where question_id = ?")) {
 			pstmt.setString(1, content);
 			pstmt.setInt(2, question_id);
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 
 	public HashMap<Integer, ArrayList<QuestionBean>> getQuestionList(int member_id) {

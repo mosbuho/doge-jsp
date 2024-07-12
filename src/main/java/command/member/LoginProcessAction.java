@@ -37,7 +37,9 @@ public class LoginProcessAction implements CommandAction {
 		}
 
 		JSONObject jsonResponse = new JSONObject();
-		jsonResponse.put("member_id", member_id);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		jsonResponse.put("success", member_id != 0);
 		response.getWriter().write(jsonResponse.toString());
 		return null;
 	}

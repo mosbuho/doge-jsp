@@ -29,10 +29,16 @@ public class AddToCartAction implements CommandAction {
 		int goods_id = jsonRequest.getInt("goods_id");
 		int quantity = jsonRequest.getInt("quantity");
 
+		int result = 0;
 		CartBean cart = new CartBean(member_id, goods_id, quantity);
-
 		CartDAO cdao = CartDAO.getInstance();
-		cdao.addCart(cart);
+		result = cdao.addCart(cart);
+
+		JSONObject jsonResponse = new JSONObject();
+		jsonResponse.put("success", result != 0);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(jsonResponse.toString());
 
 		return null;
 	}
