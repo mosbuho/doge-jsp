@@ -1,23 +1,16 @@
 package command.manager;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.GoodsBean;
-import dao.GoodsDAO;
 import process.CommandAction;
 
-public class ManagerGoodsListAction implements CommandAction {
+public class ManagerGoodsRegisterFormAction implements CommandAction {
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		if ((boolean) request.getSession().getAttribute("admin")) {
-			GoodsDAO gdao = GoodsDAO.getInstance();
-			ArrayList<GoodsBean> goodsList = gdao.getGoodsList(null);
-			request.setAttribute("goodsList", goodsList);
-			return "manager/managerGoodsList.jsp";
+			return "manager/managerGoodsRegisterForm.jsp";
 		} else {
 			return "main/main.jsp";
 		}

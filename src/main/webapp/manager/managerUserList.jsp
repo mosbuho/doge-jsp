@@ -39,7 +39,6 @@
 					<c:out value="${member.reg_date}" />
 				</td>
 			</tr>
-
 		</c:forEach>
 	</tbody>
 </table>

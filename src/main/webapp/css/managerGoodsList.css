@@ -48,3 +48,17 @@ table tbody tr:nth-of-type(odd) {
 table tbody tr:last-of-type {
 	border-bottom: 2px solid var(--border-color);
 }
+
+.create-button {
+	display: inline-block;
+	padding: 8px 16px;
+	background-color: var(--button-background);
+	color: var(--button-color);
+	border-radius: 4px;
+	margin-left: 20px;
+}
+
+.create-button:hover {
+	color: var(--button-color);
+	text-decoration: none;
+}
