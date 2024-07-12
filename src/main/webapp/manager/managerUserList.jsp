@@ -2,10 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="/doge-jsp/css/managerUserList.css">
 <script src="/doge-jsp/js/managerUserList.js"></script>
+<div class="header">
+	<h1>유저 목록</h1>
+	<a href="/doge-jsp/managerGoodsList.do">상품 목록</a>
+</div>
 <table class="styled-table">
 	<thead>
 		<tr>
-			<th>고유번호</th>
+			<th>유저 번호</th>
 			<th>아이디</th>
 			<th>이름</th>
 			<th>번호</th>
