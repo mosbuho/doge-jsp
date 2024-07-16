@@ -53,3 +53,52 @@ input[type=submit] {
 input[type=submit]:hover {
 	background-color: #0056b3;
 }
+
+#preview {
+	text-align: center;
+}
+
+#title_img {
+	margin-bottom: 30px;
+}
+
+.form-container img {
+	max-width: 330px;
+	max-height: 330px;
+	border-radius: 10px;
+	object-fit: cover;
+}
+
+.form-container .form-content {
+	flex: 1;
+}
+
+.form-container label {
+	font-weight: bold;
+}
+
+.form-container input[type="text"], .form-container input[type="number"],
+	.form-container textarea, .form-container select {
+	width: 100%;
+	padding: 8px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	font-size: 16px;
+	outline: none;
+	background: var(--input-background);
+}
+
+.submitButton {
+	width: 100%;
+	color: var(--button-color);
+	padding: 12px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 18px;
+	outline: none;
+	background-color: var(--button-background);
+}

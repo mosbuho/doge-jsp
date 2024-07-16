@@ -18,8 +18,8 @@ public class GoodsDAO {
 
 	public ArrayList<GoodsBean> getGoodsList(String category) {
 		ArrayList<GoodsBean> goodsList = new ArrayList<>();
-		String sql1 = "select * from goods";
-		String sql2 = "select * from goods where cateogry = ?";
+		String sql1 = "select * from goods order by goods_id";
+		String sql2 = "select * from goods where cateogry = ? order by goods_id";
 		try (Connection conn = DBUtil.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(category == null ? sql1 : sql2);
 				ResultSet rs = pstmt.executeQuery()) {
@@ -60,6 +60,25 @@ public class GoodsDAO {
 						.prepareStatement("update goods set quantity = quantity - ? where goods_id = ?")) {
 			pstmt.setInt(1, quantity);
 			pstmt.setInt(2, id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int registerGoods(GoodsBean goods) {
+		int result = 0;
+		try (Connection conn = DBUtil.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(
+						"insert into goods(title, description, title_img, price, discount, quantity, category) values (?, ?, ?, ?, ?, ?, ?)")) {
+			pstmt.setString(1, goods.getTitle());
+			pstmt.setString(2, goods.getDescription());
+			pstmt.setString(3, goods.getTitle_img());
+			pstmt.setInt(4, goods.getPrice());
+			pstmt.setInt(5, goods.getDiscount());
+			pstmt.setInt(6, goods.getQuantity());
+			pstmt.setString(7, goods.getCategory());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

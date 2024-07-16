@@ -10,6 +10,7 @@ public class GoodsBean {
 	private String title_img;
 	private int discount;
 	private int quantity;
+	private String category;
 	private Date reg_date;
 
 	public GoodsBean(int goods_id, String title, String description, String title_img, int price, int discount,
@@ -22,6 +23,17 @@ public class GoodsBean {
 		this.discount = discount;
 		this.quantity = quantity;
 		this.reg_date = reg_date;
+	}
+
+	public GoodsBean(String title, String description, String title_img, int price, int discount, int quantity,
+			String category) {
+		this.title = title;
+		this.price = price;
+		this.description = description;
+		this.title_img = title_img;
+		this.discount = discount;
+		this.quantity = quantity;
+		this.category = category;
 	}
 
 	public int getGoods_id() {
@@ -70,6 +82,14 @@ public class GoodsBean {
 
 	public void setDiscount(int discount) {
 		this.discount = discount;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public int getQuantity() {

@@ -46,3 +46,33 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 });
+
+function submitGoodsForm() {
+	let formData = {
+		title: document.getElementById('title').value,
+		description: document.getElementById('description').value,
+		uploadedImageName: document.getElementById('uploadedImageName').value,
+		price: parseInt(document.getElementById('price').value),
+		discount: parseInt(document.getElementById('discount').value),
+		quantity: parseInt(document.getElementById('quantity').value),
+		category: document.getElementById('category').value
+	};
+
+	fetch('/doge-jsp/managerGoodsRegisterProcess.do', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(formData)
+	})
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				alert('상품 등록이 완료되었습니다.');
+				location.href = '/doge-jsp/managerGoodsList.do';
+			} else {
+				alert('상품 등록 중 오류가 발생하였습니다. 다시 시도해주세요.');
+			}
+		})
+		.catch(() => alert('상품 등록 중 오류가 발생하였습니다. 다시 시도해주세요.'));
+}

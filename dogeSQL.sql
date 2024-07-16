@@ -134,3 +134,7 @@ select * from purchase;
 select * from question;
 
 delete from purchase;
+
+delete from manager;
+
+select * from goods;
