@@ -85,4 +85,24 @@ public class GoodsDAO {
 		}
 		return result;
 	}
+
+	public int updateGoods(GoodsBean goods) {
+		int result = 0;
+		try (Connection conn = DBUtil.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(
+						"update goods set title = ?, description = ?, title_img = ?, price = ?, discount = ?, quantity = ?, category = ? where goods_id = ?")) {
+			pstmt.setString(1, goods.getTitle());
+			pstmt.setString(2, goods.getDescription());
+			pstmt.setString(3, goods.getTitle_img());
+			pstmt.setInt(4, goods.getPrice());
+			pstmt.setInt(5, goods.getDiscount());
+			pstmt.setInt(6, goods.getQuantity());
+			pstmt.setString(7, goods.getCategory());
+			pstmt.setInt(8, goods.getGoods_id());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

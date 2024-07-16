@@ -25,6 +25,18 @@ public class GoodsBean {
 		this.reg_date = reg_date;
 	}
 
+	public GoodsBean(int goods_id, String title, String description, String title_img, int price, int discount,
+			int quantity, String category) {
+		this.goods_id = goods_id;
+		this.title = title;
+		this.price = price;
+		this.description = description;
+		this.title_img = title_img;
+		this.discount = discount;
+		this.quantity = quantity;
+		this.category = category;
+	}
+
 	public GoodsBean(String title, String description, String title_img, int price, int discount, int quantity,
 			String category) {
 		this.title = title;
