@@ -105,4 +105,16 @@ public class GoodsDAO {
 		}
 		return result;
 	}
+
+	public int deleteGoods(int goods_id) {
+		int result = 0;
+		try (Connection conn = DBUtil.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement("delete from goods where goods_id = ?")) {
+			pstmt.setInt(1, goods_id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

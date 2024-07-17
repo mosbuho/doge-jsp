@@ -77,3 +77,25 @@ function submitGoodsForm(goods_id) {
 		})
 		.catch(() => alert('상품 수정 중 오류가 발생하였습니다. 다시 시도해주세요.'));
 }
+
+function submitGoodsDelete(goods_id) {
+	if (confirm("정말 삭제하시겠습니까?")) {
+		fetch('/doge-jsp/managerGoodsDeleteProcess.do', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ "goods_id": goods_id })
+		})
+			.then(response => response.json())
+			.then(data => {
+				if (data.success) {
+					alert('상품 삭제가 완료되었습니다.');
+					location.href = '/doge-jsp/managerGoodsList.do';
+				} else {
+					alert('상품 삭제 중 오류가 발생하였습니다. 다시 시도해주세요.');
+				}
+			})
+			.catch(() => alert('상품 수정 중 오류가 발생하였습니다. 다시 시도해주세요.'));
+	}
+}

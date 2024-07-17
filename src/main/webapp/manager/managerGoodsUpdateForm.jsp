@@ -8,7 +8,7 @@
 		<label for="title_img">사진</label>
 		<br>
 		<div id="preview">
-		<img src="/doge-jsp/img/${goods.title_img}" />
+			<img src="/doge-jsp/img/${goods.title_img}" />
 		</div>
 		<br>
 		<input type="file" id="title_img" name="title_img" accept="image/*" required>
@@ -50,5 +50,6 @@
 		<br>
 		<br>
 		<button class="submitButton" onClick="submitGoodsForm(${goods.goods_id})" type="button">수정</button>
+		<button class="deleteButton" onClick="submitGoodsDelete(${goods.goods_id})" type="button">삭제</button>
 	</div>
 </form>
