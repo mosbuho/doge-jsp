@@ -5,6 +5,7 @@
 <div class="header">
 	<h1>상품 목록</h1>
 	<a href="/doge-jsp/managerUserList.do">유저 목록</a>
+	<a href="/doge-jsp/managerQuestionList.do">QnA</a>
 	<a class="create-button" href="/doge-jsp/managerGoodsRegisterForm.do">새 상품 추가</a>
 </div>
 

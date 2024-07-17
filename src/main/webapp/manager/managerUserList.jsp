@@ -5,6 +5,7 @@
 <div class="header">
 	<h1>유저 목록</h1>
 	<a href="/doge-jsp/managerGoodsList.do">상품 목록</a>
+	<a href="/doge-jsp/managerQuestionList.do">QnA</a>
 </div>
 <table class="styled-table">
 	<thead>

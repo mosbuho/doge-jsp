@@ -42,6 +42,23 @@ public class QuestionDAO {
 		return question_id;
 	}
 
+	public QuestionBean getQuestion(int question_id) {
+		QuestionBean question = null;
+		try (Connection conn = DBUtil.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement("select * from question where question_id = ?")) {
+			pstmt.setInt(1, question_id);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					question = new QuestionBean(rs.getInt("question_id"), rs.getInt("member_id"), rs.getInt("goods_id"),
+							rs.getString("content"), rs.getDate("reg_date"));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return question;
+	}
+
 	public ArrayList<QuestionBean> getQuestions(int goods_id) {
 		ArrayList<QuestionBean> questionList = new ArrayList<QuestionBean>();
 		try (Connection conn = DBUtil.getConnection();
@@ -111,5 +128,23 @@ public class QuestionDAO {
 			e.printStackTrace();
 		}
 		return questionMap;
+	}
+
+	public ArrayList<QuestionBean> getAllQuestions() {
+		ArrayList<QuestionBean> questionList = new ArrayList<QuestionBean>();
+		try (Connection conn = DBUtil.getConnection();
+				PreparedStatement pstmt = conn
+						.prepareStatement("select * from question where done = 0 order by question_id desc")) {
+			try (ResultSet rs = pstmt.executeQuery()) {
+				while (rs.next()) {
+					QuestionBean question = new QuestionBean(rs.getInt("question_id"), rs.getInt("member_id"),
+							rs.getInt("goods_id"), rs.getString("content"), rs.getDate("reg_date"));
+					questionList.add(question);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return questionList;
 	}
 }

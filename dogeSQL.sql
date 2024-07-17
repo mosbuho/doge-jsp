@@ -86,6 +86,7 @@ create table question (
     member_id constraint question_member_fk references member (member_id) on delete cascade,
     goods_id constraint question_goods_fk references goods (goods_id) on delete cascade,
     content varchar2(1000) not null,
+    done number(1) default 0,
     reg_date date default sysdate
 );
 

@@ -49,3 +49,7 @@ main {
 .styled-table tbody tr:last-of-type {
 	border-bottom: 2px solid var(--border-color);
 }
+
+.header a {
+	margin: 10px;
+}

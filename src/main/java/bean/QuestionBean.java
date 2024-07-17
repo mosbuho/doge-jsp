@@ -20,6 +20,14 @@ public class QuestionBean {
 		this.title_img = title_img;
 	}
 
+	public QuestionBean(int question_id, int member_id, int goods_id, String content, Date reg_date) {
+		this.question_id = question_id;
+		this.member_id = member_id;
+		this.goods_id = goods_id;
+		this.content = content;
+		this.reg_date = reg_date;
+	}
+
 	public QuestionBean(int question_id, int member_id, int goods_id, String content, Date reg_date, String m_id) {
 		this.question_id = question_id;
 		this.member_id = member_id;
