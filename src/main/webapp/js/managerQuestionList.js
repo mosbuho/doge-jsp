@@ -46,6 +46,7 @@ function deleteQuestion(question_id) {
 		.then(response => response.json())
 		.then(data => {
 			if (data.success) {
+				document.querySelector(`.question-item[data-id="${question_id}"]`).remove();
 				alert('질문이 삭제되었습니다. ');
 			} else {
 				alert('삭제 중 오류가 발생했습니다. 다시 시도해주세요. ');
