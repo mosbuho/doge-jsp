@@ -57,6 +57,8 @@ function purchase(member_id) {
 }
 
 function newQuestion(member_id, goods_id, m_id) {
+	let today = new Date();
+	let formattedDate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
 	if (member_id !== 0) {
 		let content = document.getElementById('QnAContent');
 		if (content.value.trim() !== '') {
@@ -85,7 +87,8 @@ function newQuestion(member_id, goods_id, m_id) {
 					            <button onclick='delQuestion(${data.question_id})'>삭제</button>
 					        </div>
 					    </div>
-					    <div class='question-bottom'>${content.value}</div>
+					    <div class="question-bottom" id="questionContent-${data.question_id}" data-original-content="${content.value}">${content.value}</div>
+						<div class="answer-date">${formattedDate}</div>
 					`;
 						document.querySelector('.goods-QnA').appendChild(newQuestion);
 						content.value = '';
@@ -123,18 +126,39 @@ function delQuestion(question_id) {
 	}
 }
 
+function delQuestion(question_id) {
+	if (confirm('문의를 삭제하시겠습니까?')) {
+		fetch('/doge-jsp/delQuestion.do', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ question_id: question_id })
+		})
+			.then(response => response.json())
+			.then(data => {
+				if (data.success) {
+					document.querySelector(`#question-${question_id}`).remove();
+					alert('문의가 삭제되었습니다.');
+				} else {
+					alert('문의 삭제 중 오류가 발생했습니다. 다시 시도해주세요.')
+				}
+			})
+			.catch(() => alert('문의 삭제 중 오류가 발생했습니다. 다시 시도해주세요.'));
+	}
+}
+
 function editQuestion(question_id) {
+	const questionBottom = document.getElementById('questionContent-' + question_id);
+	const originalContent = questionBottom.getAttribute('data-original-content');
+	questionBottom.innerHTML = `<textarea class='edit-content' maxlength='1000'>${originalContent}</textarea>`;
 	const questionDiv = document.getElementById('question-' + question_id);
-	const questionContent = questionDiv.querySelector('.question-bottom').textContent;
-	questionDiv.querySelector('.question-bottom').innerHTML = `<textarea class='edit-content' maxlength='1000'>${questionContent}</textarea>`;
 	questionDiv.querySelector('.question-top-right').innerHTML = `
         <button onclick='updateQuestion(${question_id})'>등록</button>
-        <button onclick='cancelEdit(${question_id}, "${questionContent}")'>취소</button>`;
+        <button onclick='cancelEdit(${question_id})'>취소</button>`;
 }
 
 function updateQuestion(question_id) {
-	const questionDiv = document.getElementById('question-' + question_id);
-	const updatedContent = questionDiv.querySelector('.edit-content').value;
+	const questionBottom = document.getElementById('questionContent-' + question_id);
+	const updatedContent = questionBottom.querySelector('.edit-content').value;
 	if (updatedContent.trim() !== '') {
 		fetch('/doge-jsp/updateQuestion.do', {
 			method: 'POST',
@@ -144,11 +168,12 @@ function updateQuestion(question_id) {
 			.then(response => response.json())
 			.then(data => {
 				if (data.success) {
-					console.log()
-					questionDiv.querySelector('.question-bottom').innerHTML = updatedContent;
+					questionBottom.innerHTML = updatedContent;
+					questionBottom.setAttribute('data-original-content', updatedContent);
+					const questionDiv = document.getElementById('question-' + question_id);
 					questionDiv.querySelector('.question-top-right').innerHTML = `
-				    <button onclick='editQuestion(${question_id})'>수정</button>
-				    <button onclick='delQuestion(${question_id})'>삭제</button>`;
+                    <button onclick='editQuestion(${question_id})'>수정</button>
+                    <button onclick='delQuestion(${question_id})'>삭제</button>`;
 					alert('수정이 완료되었습니다.');
 				} else {
 					alert('수정 중 오류가 발생했습니다. 다시 시도해주세요.');
@@ -160,10 +185,12 @@ function updateQuestion(question_id) {
 	}
 }
 
-function cancelEdit(question_id, originalContent) {
+function cancelEdit(question_id) {
+	const questionBottom = document.getElementById('questionContent-' + question_id);
+	const originalContent = questionBottom.getAttribute('data-original-content');
+	questionBottom.innerHTML = originalContent;
 	const questionDiv = document.getElementById('question-' + question_id);
-	questionDiv.querySelector('.question-bottom').innerHTML = originalContent;
 	questionDiv.querySelector('.question-top-right').innerHTML = `
-	    <button onclick='editQuestion(${question_id})'>수정</button>
-	    <button onclick='delQuestion(${question_id})'>삭제</button>`;
+        <button onclick='editQuestion(${question_id})'>수정</button>
+        <button onclick='delQuestion(${question_id})'>삭제</button>`;
 }

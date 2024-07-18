@@ -10,7 +10,7 @@
 		</div>
 		<div class="goods-info">
 			<h1 class="goods-title">${goods.title}</h1>
-			<p class="goods-price">${dogePrice} DOGE [\$${goods.price}.00]</p>
+			<p class="goods-price">${dogePrice}DOGE[\$${goods.price}.00]</p>
 			<p id="goods-quantity" class="goods-quantity">${goods.quantity}개</p>
 			<p class="goods-reg_date">${goods.reg_date}</p>
 			<div class="user-quantity">
@@ -18,7 +18,9 @@
 				<span id="display-quantity">1</span>
 				<button class="quantity-button" type="button" onclick="incrementQuantity()">+</button>
 			</div>
-			<input type="hidden" id="member_id" value="${memberId}"> <input type="hidden" id="goods_id" value="${goods.goods_id}"> <input type="hidden" id="quantity" value="1">
+			<input type="hidden" id="member_id" value="${memberId}">
+			<input type="hidden" id="goods_id" value="${goods.goods_id}">
+			<input type="hidden" id="quantity" value="1">
 			<div class="goods-actions">
 				<button class="add-to-cart" onClick="addToCart(${memberId}, ${goods.goods_id})">장바구니 넣기</button>
 				<button class="buy-now" onClick="purchase(${memberId})">바로구매</button>
@@ -49,7 +51,14 @@
 								</div>
 							</c:if>
 						</div>
-						<div class="question-bottom">${question.content}</div>
+						<div class="question-bottom" id="questionContent-${question.question_id}" data-original-content="${question.content}">${question.content}</div>
+						<div class="answer-date">${question.reg_date}</div>
+						<c:if test="${not empty question.answer}">
+							<div class="answer" id="answer-${question.answer.answer_id}">
+								<div class="answer-content"><b>A. </b>${question.answer.content}</div>
+								<div class="answer-date">${question.answer.reg_date}</div>
+							</div>
+						</c:if>
 					</div>
 				</c:forEach>
 			</c:otherwise>

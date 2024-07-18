@@ -22,7 +22,7 @@ public class GoodsContentAction implements CommandAction {
 		request.setAttribute("goods", goods);
 
 		QuestionDAO qdao = QuestionDAO.getInstance();
-		ArrayList<QuestionBean> questionList = qdao.getQuestions(Integer.parseInt(goods_id));
+		ArrayList<QuestionBean> questionList = qdao.getQuestionsWithAnswers(Integer.parseInt(goods_id));
 		request.setAttribute("questionList", questionList);
 
 		DogePrice dp = DogePrice.getInstance();

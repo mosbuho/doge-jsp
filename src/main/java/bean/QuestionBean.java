@@ -11,6 +11,15 @@ public class QuestionBean {
 	private String m_id;
 	private String title;
 	private String title_img;
+	private AnswerBean answer;
+
+	public QuestionBean(int question_id, int member_id, String content, Date reg_date, String m_id) {
+		this.question_id = question_id;
+		this.member_id = member_id;
+		this.content = content;
+		this.reg_date = reg_date;
+		this.m_id = m_id;
+	}
 
 	public QuestionBean(int goods_id, String content, Date reg_date, String title, String title_img) {
 		this.goods_id = goods_id;
@@ -99,6 +108,14 @@ public class QuestionBean {
 
 	public void setTitle_img(String title_img) {
 		this.title_img = title_img;
+	}
+
+	public AnswerBean getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(AnswerBean answer) {
+		this.answer = answer;
 	}
 
 }

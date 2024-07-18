@@ -163,3 +163,14 @@ textarea {
 .question-bottom {
 	padding: 0 0 10px 0;
 }
+
+.answer-date {
+	text-align: right;
+	padding: 5px 0;
+	font-size: 14px;
+}
+
+.answer-content {
+	border-top: 1px solid var(--border-color);
+	padding: 10px 0;
+}
