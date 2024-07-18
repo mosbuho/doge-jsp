@@ -133,6 +133,7 @@ select * from member;
 select * from goods;
 select * from purchase;
 select * from question;
+select * from answer;
 
 delete from purchase;
 

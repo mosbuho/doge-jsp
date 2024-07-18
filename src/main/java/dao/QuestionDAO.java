@@ -147,4 +147,17 @@ public class QuestionDAO {
 		}
 		return questionList;
 	}
+
+	public int done(int question_id) {
+		int result = 0;
+		try (Connection conn = DBUtil.getConnection();
+				PreparedStatement pstmt = conn.prepareCall("update question set done = ?  where question_id = ?")) {
+			pstmt.setInt(1, 1);
+			pstmt.setInt(2, question_id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

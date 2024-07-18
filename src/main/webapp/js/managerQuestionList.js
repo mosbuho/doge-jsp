@@ -11,26 +11,24 @@ document.addEventListener('DOMContentLoaded', function() {
 		const deleteBtn = questionItem.querySelector('.delete-btn');
 
 		if (e.target.classList.contains('answer-btn')) {
-			answerForm.style.display = 'block';
-			answerBtn.textContent = '등록';
-			deleteBtn.textContent = '취소';
+			if (answerBtn.textContent === '답변') {
+				answerForm.style.display = 'block';
+				answerBtn.textContent = '등록';
+				deleteBtn.textContent = '취소';
+			} else if (answerBtn.textContent === '등록') {
+				const answerContent = answerForm.querySelector('textarea').value;
+				submitAnswer(questionId, answerContent);
+			}
 		} else if (e.target.classList.contains('delete-btn')) {
 			if (deleteBtn.textContent === '삭제') {
 				if (confirm('정말 삭제하시겠습니까?')) {
 					deleteQuestion(questionId);
 				}
-			} else {
+			} else if (deleteBtn.textContent === '취소') {
 				answerForm.style.display = 'none';
 				answerBtn.textContent = '답변';
 				deleteBtn.textContent = '삭제';
 			}
-		} else if (e.target.classList.contains('submit-answer')) {
-			const answerContent = answerForm.querySelector('textarea').value;
-			submitAnswer(questionId, answerContent);
-		} else if (e.target.classList.contains('cancel-answer')) {
-			answerForm.style.display = 'none';
-			answerBtn.textContent = '답변';
-			deleteBtn.textContent = '삭제';
 		}
 	});
 });
@@ -55,17 +53,18 @@ function deleteQuestion(question_id) {
 		.catch(() => alert('삭제 중 오류가 발생했습니다. 다시 시도해주세요. '));
 }
 
-function submitAnswer(questionId, content) {
+function submitAnswer(question_id, content) {
 	fetch(`/doge-jsp/managerNewAwnserProcess.do`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify({ questionId, content }),
+		body: JSON.stringify({ question_id: question_id, content: content }),
 	})
 		.then(response => response.json())
 		.then(data => {
 			if (data.success) {
+				document.querySelector(`.question-item[data-id="${question_id}"]`).remove();
 				alert('답변이 등록되었습니다. ');
 			} else {
 				alert('답변 등록 중 오류가 발생했습니다. 다시 시도해주세요. ');
