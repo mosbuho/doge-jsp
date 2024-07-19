@@ -40,15 +40,15 @@ public class PurchaseAllProcessAction implements CommandAction {
 		int pdaoResult = 0;
 		int gdaoResult = 0;
 		int cdaoResult = 0;
-
+		
+		String randomStr = UUID.randomUUID().toString();
 		for (int i = 0; i < goodsList.length(); i++) {
 			JSONObject item = goodsList.getJSONObject(i);
 			int goods_id = item.getInt("goods_id");
 			int quantity = item.getInt("quantity");
 			int total_usd = item.getInt("total_usd");
 			int total_doge = item.getInt("total_doge");
-			pdaoResult = pdao.purchase(member_id, goods_id, quantity, name, addr, total_usd, total_doge,
-					UUID.randomUUID().toString());
+			pdaoResult = pdao.purchase(member_id, goods_id, quantity, name, addr, total_usd, total_doge, randomStr);
 			gdaoResult = gdao.purchaseGoods(goods_id, quantity);
 		}
 		CartDAO cdao = CartDAO.getInstance();

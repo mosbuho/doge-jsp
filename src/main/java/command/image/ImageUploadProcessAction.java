@@ -19,7 +19,7 @@ import process.CommandAction;
 public class ImageUploadProcessAction implements CommandAction {
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		String uploadPath = "C:\\Users\\geonu\\Documents\\eclipse-workspace\\doge-jsp\\src\\main\\webapp\\img\\";
+		String uploadPath = "C:/Users/geonu/Documents/eclipse-workspace/doge-jsp/src/main/webapp/img/";
 		Part filePart = request.getPart("file");
 		String newFileName = UUID.randomUUID().toString() + ".webp";
 

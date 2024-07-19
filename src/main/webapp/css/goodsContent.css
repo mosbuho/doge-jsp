@@ -45,6 +45,7 @@ main {
 .goods-image img {
 	width: 330px;
 	height: 330px;
+	border-radius: 5px;
 }
 
 .goods-info {
@@ -74,6 +75,7 @@ button {
 	padding: 10px 20px;
 	font-size: 16px;
 	cursor: pointer;
+	border-radius: 5px;
 }
 
 button.add-to-cart {

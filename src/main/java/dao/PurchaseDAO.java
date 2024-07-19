@@ -71,4 +71,24 @@ public class PurchaseDAO {
 		}
 		return purchaseMap;
 	}
+
+	public ArrayList<PurchaseBean> getPurchaseListAll() {
+		ArrayList<PurchaseBean> purchaseList = new ArrayList<PurchaseBean>();
+		try (Connection conn = DBUtil.getConnection();
+				PreparedStatement pstmt = conn
+						.prepareStatement("select * from purchase order by reg_date desc, transaction_id")) {
+			try (ResultSet rs = pstmt.executeQuery()) {
+				while (rs.next()) {
+					PurchaseBean purchase = new PurchaseBean(rs.getInt("purchase_id"), rs.getInt("member_id"),
+							rs.getInt("goods_id"), rs.getInt("quantity"), rs.getString("name"), rs.getString("addr"),
+							rs.getInt("total_usd"), rs.getInt("total_doge"), rs.getInt("delivery_state"),
+							rs.getString("transaction_id"), rs.getDate("reg_date"));
+					purchaseList.add(purchase);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return purchaseList;
+	}
 }

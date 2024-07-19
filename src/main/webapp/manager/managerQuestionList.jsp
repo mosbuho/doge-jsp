@@ -6,6 +6,7 @@
 	<h1>QnA 목록</h1>
 	<a href="/doge-jsp/managerUserList.do">유저 목록</a>
 	<a href="/doge-jsp/managerGoodsList.do">상품 목록</a>
+	<a href="/doge-jsp/managerPurchaseList.do">주문 목록</a>
 </div>
 
 <div class="question-list">

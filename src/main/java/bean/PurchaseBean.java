@@ -19,6 +19,21 @@ public class PurchaseBean {
 	private int price;
 
 	public PurchaseBean(int purchase_id, int member_id, int goods_id, int quantity, String name, String addr,
+			int total_usd, int total_doge, int delivery_state, String transaction_id, Date reg_date) {
+		this.purchase_id = purchase_id;
+		this.member_id = member_id;
+		this.goods_id = goods_id;
+		this.quantity = quantity;
+		this.name = name;
+		this.addr = addr;
+		this.total_usd = total_usd;
+		this.total_doge = total_doge;
+		this.delivery_state = delivery_state;
+		this.transaction_id = transaction_id;
+		this.reg_date = reg_date;
+	}
+
+	public PurchaseBean(int purchase_id, int member_id, int goods_id, int quantity, String name, String addr,
 			int total_usd, int total_doge, int delivery_state, String transaction_id, Date reg_date, String title_img,
 			String title, int price) {
 		this.purchase_id = purchase_id;
