@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <link rel="stylesheet" href="/doge-jsp/css/managerPurchaseList.css">
+<script src="/doge-jsp/js/managerPurchaseList.js"></script>
 <div class="header">
 	<h1>주문 목록</h1>
 	<a href="/doge-jsp/managerUserList.do">유저 목록</a>
@@ -22,6 +23,7 @@
 			<th>배송 상태</th>
 			<th>주문일</th>
 			<th>주문 ID</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -34,10 +36,13 @@
 				<td>${purchase.name}</td>
 				<td>${purchase.addr}</td>
 				<td>
-					\$<fmt:formatNumber value="${purchase.total_usd}" type="number" groupingUsed="true" />.00
+					$
+					<fmt:formatNumber value="${purchase.total_usd}" type="number" groupingUsed="true" />
+					.00
 				</td>
 				<td>
-					<fmt:formatNumber value="${purchase.total_doge}" type="number" groupingUsed="true" /> DOGE
+					<fmt:formatNumber value="${purchase.total_doge}" type="number" groupingUsed="true" />
+					DOGE
 				</td>
 				<td>
 					<c:choose>
@@ -48,6 +53,9 @@
 				</td>
 				<td>${purchase.reg_date}</td>
 				<td>${purchase.transaction_id}</td>
+				<td>
+					<button class="edit-btn">수정</button>
+				</td>
 			</tr>
 		</c:forEach>
 	</tbody>

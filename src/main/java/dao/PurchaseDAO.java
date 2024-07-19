@@ -91,4 +91,20 @@ public class PurchaseDAO {
 		}
 		return purchaseList;
 	}
+
+	public int updatePurchase(int purchase_id, String name, String addr, int delivery_state) {
+		int result = 0;
+		try (Connection conn = DBUtil.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(
+						"update purchase set name = ?, addr = ?, delivery_state = ? where purchase_id = ?")) {
+			pstmt.setString(1, name);
+			pstmt.setString(2, name);
+			pstmt.setInt(3, delivery_state);
+			pstmt.setInt(4, purchase_id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
