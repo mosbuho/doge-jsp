@@ -47,10 +47,7 @@ public class ManagerGoodsRegisterProcessAction implements CommandAction {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write(jsonResponse.toString());
-
-			return null;
-		} else {
-			return "main/main.jsp";
 		}
+		return null;
 	}
 }

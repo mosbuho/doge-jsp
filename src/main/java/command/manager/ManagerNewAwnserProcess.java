@@ -45,9 +45,7 @@ public class ManagerNewAwnserProcess implements CommandAction {
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write(jsonResponse.toString());
 
-			return null;
-		} else {
-			return null;
 		}
+		return null;
 	}
 }

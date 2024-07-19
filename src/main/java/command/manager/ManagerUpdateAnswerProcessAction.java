@@ -8,15 +8,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
+import bean.GoodsBean;
+import dao.AnswerDAO;
 import dao.GoodsDAO;
 import process.CommandAction;
 
-public class ManagerGoodsDeleteProcessAction implements CommandAction {
+public class ManagerUpdateAnswerProcessAction implements CommandAction {
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		if ((boolean) request.getSession().getAttribute("admin")) {
 			int result = 0;
+
 			request.setCharacterEncoding("UTF-8");
 
 			StringBuilder sb = new StringBuilder();
@@ -28,9 +31,11 @@ public class ManagerGoodsDeleteProcessAction implements CommandAction {
 			}
 
 			JSONObject jsonObject = new JSONObject(sb.toString());
-			int goods_id = jsonObject.getInt("goods_id");
-			GoodsDAO gdao = GoodsDAO.getInstance();
-			result = gdao.deleteGoods(goods_id);
+			int answer_id = jsonObject.getInt("answer_id");
+			String content = jsonObject.getString("content");
+
+			AnswerDAO adao = AnswerDAO.getInstance();
+			result = adao.updateAnswer(answer_id, content);
 
 			JSONObject jsonResponse = new JSONObject();
 			jsonResponse.put("success", result != 0);

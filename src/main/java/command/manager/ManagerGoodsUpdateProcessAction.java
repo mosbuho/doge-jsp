@@ -49,9 +49,7 @@ public class ManagerGoodsUpdateProcessAction implements CommandAction {
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write(jsonResponse.toString());
 
-			return null;
-		} else {
-			return "main/main.jsp";
 		}
+		return null;
 	}
 }

@@ -70,3 +70,14 @@ button {
 	border-top: 1px solid var(--border-color);
 	padding-top: 5px;
 }
+
+.answer-edit-form textarea {
+	width: 100%;
+	resize: none;
+	margin: 16px 0;
+	padding: 5px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	height: 75px;
+}

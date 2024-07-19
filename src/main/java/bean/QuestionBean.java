@@ -13,6 +13,9 @@ public class QuestionBean {
 	private String title_img;
 	private AnswerBean answer;
 
+	public QuestionBean() {
+	}
+
 	public QuestionBean(int question_id, int member_id, String content, Date reg_date, String m_id) {
 		this.question_id = question_id;
 		this.member_id = member_id;

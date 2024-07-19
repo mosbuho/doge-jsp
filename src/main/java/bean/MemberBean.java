@@ -11,6 +11,9 @@ public class MemberBean {
 	private String addr;
 	private Date reg_date;
 
+	public MemberBean() {
+	}
+
 	public MemberBean(String id, String pw, String name, String phone, String addr) {
 		this.id = id;
 		this.pw = pw;

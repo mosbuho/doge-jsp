@@ -132,15 +132,31 @@ public class QuestionDAO {
 
 	public ArrayList<QuestionBean> getAllQuestions() {
 		ArrayList<QuestionBean> questionList = new ArrayList<QuestionBean>();
+		String sql = "SELECT q.*, a.answer_id, a.content AS answer_content, a.reg_date AS answer_reg_date "
+				+ "FROM question q LEFT JOIN answer a ON q.question_id = a.question_id "
+				+ "ORDER BY q.question_id DESC";
+
 		try (Connection conn = DBUtil.getConnection();
-				PreparedStatement pstmt = conn
-						.prepareStatement("select * from question where done = 0 order by question_id desc")) {
-			try (ResultSet rs = pstmt.executeQuery()) {
-				while (rs.next()) {
-					QuestionBean question = new QuestionBean(rs.getInt("question_id"), rs.getInt("member_id"),
-							rs.getInt("goods_id"), rs.getString("content"), rs.getDate("reg_date"));
-					questionList.add(question);
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery()) {
+
+			while (rs.next()) {
+				QuestionBean question = new QuestionBean();
+				question.setQuestion_id(rs.getInt("question_id"));
+				question.setMember_id(rs.getInt("member_id"));
+				question.setGoods_id(rs.getInt("goods_id"));
+				question.setContent(rs.getString("content"));
+				question.setReg_date(rs.getDate("reg_date"));
+
+				if (rs.getInt("answer_id") != 0) {
+					AnswerBean answer = new AnswerBean();
+					answer.setAnswer_id(rs.getInt("answer_id"));
+					answer.setContent(rs.getString("answer_content"));
+					answer.setReg_date(rs.getDate("answer_reg_date"));
+					question.setAnswer(answer);
 				}
+
+				questionList.add(question);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

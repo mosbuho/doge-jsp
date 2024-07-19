@@ -7,6 +7,8 @@ public class AnswerBean {
 	private int question_id;
 	private String content;
 	private Date reg_date;
+	private QuestionBean question;
+	private MemberBean member;
 
 	public int getAnswer_id() {
 		return answer_id;
@@ -38,6 +40,22 @@ public class AnswerBean {
 
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
+	}
+
+	public QuestionBean getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(QuestionBean question) {
+		this.question = question;
+	}
+
+	public MemberBean getMember() {
+		return member;
+	}
+
+	public void setMember(MemberBean member) {
+		this.member = member;
 	}
 
 }
